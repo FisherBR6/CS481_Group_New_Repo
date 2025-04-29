@@ -29,3 +29,9 @@ Assets/AssetStoreTools*
 # OS-specific
 .DS_Store
 Thumbs.db
+__MACOSX/
+
+# Ignore TMP extras (emoji, style sheets, etc.)
+Assets/TextMesh Pro/Resources/Sprite Assets/
+Assets/TextMesh Pro/Resources/Style Sheets/
+Assets/TextMesh Pro/Examples/
