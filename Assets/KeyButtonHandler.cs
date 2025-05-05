@@ -15,7 +15,9 @@ public class KeyButton : MonoBehaviour
         TMP_Text tmpText = GetComponentInChildren<TMP_Text>();
         if (tmpText != null)
         {
+            string character = tmpText.text;
             Debug.Log("Key Pressed: " + tmpText.text);
+            KeyboardTextDisplay.Instance.AddCharacter(character);
             return;
         }
 

@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\annac\\CS481_Group_New_Repo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\annac\\cs481_group_new_repo\\assets\\keyboardtextdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keyboardtextdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\annac\\cs481_group_new_repo\\assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\annac\\CS481_Group_New_Repo\\assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\annac\\CS481_Group_New_Repo\\assets\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\annac\\cs481_group_new_repo\\assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,24 +34,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "KeyboardTextDisplay.cs",
+              "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyboardTextDisplay.cs",
+              "RelativeDocumentMoniker": "Assets\\KeyboardTextDisplay.cs",
+              "ToolTip": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyboardTextDisplay.cs",
+              "RelativeToolTip": "Assets\\KeyboardTextDisplay.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T20:41:24.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "KeyButtonHandler.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyButtonHandler.cs",
               "RelativeDocumentMoniker": "Assets\\KeyButtonHandler.cs",
               "ToolTip": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyButtonHandler.cs",
               "RelativeToolTip": "Assets\\KeyButtonHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBIAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T19:56:29.602Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "InputManager.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\InputManager.cs",
               "RelativeDocumentMoniker": "Assets\\InputManager.cs",
@@ -55,12 +72,11 @@
               "RelativeToolTip": "Assets\\InputManager.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAAuwA4AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T19:39:56.738Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T19:39:56.738Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "SceneManagerScript.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\SceneManagerScript.cs",
               "RelativeDocumentMoniker": "Assets\\SceneManagerScript.cs",
@@ -68,12 +84,11 @@
               "RelativeToolTip": "Assets\\SceneManagerScript.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T01:00:29.186Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T01:00:29.186Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "KeyboardLoader.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyboardLoader.cs",
               "RelativeDocumentMoniker": "Assets\\KeyboardLoader.cs",
@@ -81,12 +96,11 @@
               "RelativeToolTip": "Assets\\KeyboardLoader.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T00:37:03.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T00:37:03.076Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "FirstPersonController.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\FirstPersonController.cs",
               "RelativeDocumentMoniker": "Assets\\FirstPersonController.cs",
@@ -94,8 +108,7 @@
               "RelativeToolTip": "Assets\\FirstPersonController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T20:21:01.683Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T20:21:01.683Z"
             }
           ]
         }
