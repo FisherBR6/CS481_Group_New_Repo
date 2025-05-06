@@ -24,4 +24,13 @@ public class KeyboardTextDisplay : MonoBehaviour
         currentText = "";
         typedText.text = "";
     }
+
+    public void Backspace()
+    {
+        if (currentText.Length > 0)
+        {
+            currentText = currentText.Substring(0, currentText.Length - 1); 
+            typedText.text = currentText;
+        }
+    }
 }

@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\annac\\CS481_Group_New_Repo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\annac\\cs481_group_new_repo\\assets\\keyboardtextdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\annac\\CS481_Group_New_Repo\\assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\annac\\CS481_Group_New_Repo\\assets\\keyboardtextdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keyboardtextdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\annac\\cs481_group_new_repo\\assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\annac\\cs481_group_new_repo\\assets\\inputsaver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\inputsaver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\annac\\CS481_Group_New_Repo\\assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,37 +38,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "InputSaver.cs",
+              "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\InputSaver.cs",
+              "RelativeDocumentMoniker": "Assets\\InputSaver.cs",
+              "ToolTip": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\InputSaver.cs",
+              "RelativeToolTip": "Assets\\InputSaver.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T00:37:53.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "KeyboardTextDisplay.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyboardTextDisplay.cs",
               "RelativeDocumentMoniker": "Assets\\KeyboardTextDisplay.cs",
               "ToolTip": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyboardTextDisplay.cs",
               "RelativeToolTip": "Assets\\KeyboardTextDisplay.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA1wCAAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T20:41:24.106Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "KeyButtonHandler.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyButtonHandler.cs",
               "RelativeDocumentMoniker": "Assets\\KeyButtonHandler.cs",
               "ToolTip": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyButtonHandler.cs",
               "RelativeToolTip": "Assets\\KeyButtonHandler.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBIAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwBYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T19:56:29.602Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "InputManager.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\InputManager.cs",
               "RelativeDocumentMoniker": "Assets\\InputManager.cs",
@@ -76,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "SceneManagerScript.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\SceneManagerScript.cs",
               "RelativeDocumentMoniker": "Assets\\SceneManagerScript.cs",
@@ -88,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "KeyboardLoader.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyboardLoader.cs",
               "RelativeDocumentMoniker": "Assets\\KeyboardLoader.cs",
@@ -100,7 +117,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "FirstPersonController.cs",
               "DocumentMoniker": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\FirstPersonController.cs",
               "RelativeDocumentMoniker": "Assets\\FirstPersonController.cs",

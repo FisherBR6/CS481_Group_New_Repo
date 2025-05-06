@@ -11,31 +11,37 @@ public class KeyButton : MonoBehaviour
 
     void OnKeyPress()
     {
-        // Look for TMP_Text (TextMeshPro)
-        TMP_Text tmpText = GetComponentInChildren<TMP_Text>();
-        if (tmpText != null)
-        {
-            string character = tmpText.text;
-            Debug.Log("Key Pressed: " + tmpText.text);
-            KeyboardTextDisplay.Instance.AddCharacter(character);
-            return;
-        }
+        string keyName = gameObject.name;
 
-        // Fallbacks for legacy components
-        Text uiText = GetComponentInChildren<Text>();
-        if (uiText != null)
+        if (keyName == "Delete")
         {
-            Debug.Log("Key Pressed: " + uiText.text);
-            return;
+            KeyboardTextDisplay.Instance.Backspace();
         }
-
-        TextMesh textMesh = GetComponentInChildren<TextMesh>();
-        if (textMesh != null)
+        else if (keyName == "Spacebar")
         {
-            Debug.Log("Key Pressed: " + textMesh.text);
-            return;
+            KeyboardTextDisplay.Instance.AddCharacter(" ");
         }
-
-        Debug.LogWarning("No text found on key.");
+        else if (keyName == "Tab")
+        {
+            KeyboardTextDisplay.Instance.AddCharacter("   ");
+        }
+        else if(keyName == "Enter")
+        {
+            KeyboardTextDisplay.Instance.AddCharacter("\n");
+        }
+        else
+        {
+            // Look for TMP_Text (TextMeshPro)
+            TMP_Text tmpText = GetComponentInChildren<TMP_Text>();
+            if (tmpText != null)
+            {
+                string character = tmpText.text;
+                KeyboardTextDisplay.Instance.AddCharacter(character);
+            }
+            else
+            {
+                Debug.LogWarning("No text found on key.");
+            }
+        }
     }
 }
