@@ -35,3 +35,6 @@ __MACOSX/
 Assets/TextMesh Pro/Resources/Sprite Assets/
 Assets/TextMesh Pro/Resources/Style Sheets/
 Assets/TextMesh Pro/Examples/
+
+# Ignore version specific files
+UserSettings/Layouts/
