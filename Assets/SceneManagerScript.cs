@@ -13,8 +13,15 @@ public class SceneManagerScript : MonoBehaviour
         SceneManager.LoadScene("QWERTY_Scene", LoadSceneMode.Additive);
     }
 
-    public void LoadABC()
+    public static void LoadABC()
     {
+        SceneManager.UnloadSceneAsync("QWERTY_Scene");
         SceneManager.LoadScene("ABC_Scene", LoadSceneMode.Additive);
+    }
+
+    public static void LoadQWERTY()
+    {
+        SceneManager.UnloadSceneAsync("ABC_Scene");
+        SceneManager.LoadScene("QWERTY_Scene", LoadSceneMode.Additive);
     }
 }

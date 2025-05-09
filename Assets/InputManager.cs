@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
-    public Camera mainCamera;  // Your main camera
+    public Camera mainCamera;
     private GraphicRaycaster graphicRaycaster;  // The raycaster for UI
-    private Canvas canvas;  // The canvas holding your UI buttons
+    private Canvas canvas; 
 
     private void Start()
     {
@@ -44,10 +44,8 @@ public class InputManager : MonoBehaviour
         {
             GameObject hitObject = hit.collider.gameObject;
 
-            // Assuming your key buttons have the "KeyButton" tag
             if (hitObject.CompareTag("KeyButton"))
             {
-                // You can change color or trigger logic here
                 Debug.Log($"Key pressed: {hitObject.name}");
             }
         }
