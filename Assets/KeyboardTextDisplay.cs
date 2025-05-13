@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -32,5 +33,10 @@ public class KeyboardTextDisplay : MonoBehaviour
             currentText = currentText.Substring(0, currentText.Length - 1); 
             typedText.text = currentText;
         }
+    }
+
+    public string getCurrentText()
+    {
+        return currentText;
     }
 }

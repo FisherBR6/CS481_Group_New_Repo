@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,6 +50,32 @@ public class KeyButton : MonoBehaviour
         else if (keyName == "Save")
         {
             Debug.Log("File saving in progress...");
+            string textToSave = KeyboardTextDisplay.Instance.getCurrentText();
+
+            if (string.IsNullOrEmpty(textToSave))
+            {
+                Debug.Log("text input is empty");
+                return;
+            }
+
+            // save filename with current date/time
+            string fileName = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt";
+            string path = Path.Combine(Application.persistentDataPath, fileName);
+
+            try
+            {
+                // save text to the file
+                File.WriteAllText(path, textToSave);
+                Debug.Log("file saved successfully at: " + path);
+
+                // clear input field after saving
+                KeyboardTextDisplay.Instance.ClearText();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("error saving file: " + e.Message);
+            }
+                    
         }
         else
         {
@@ -63,5 +91,7 @@ public class KeyButton : MonoBehaviour
                 Debug.LogWarning("No text found on key.");
             }
         }
+
+
     }
 }
