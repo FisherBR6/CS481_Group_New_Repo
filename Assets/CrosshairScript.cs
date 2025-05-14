@@ -2,18 +2,31 @@ using UnityEngine;
 
 public class CrosshairScript : MonoBehaviour
 {
+    private Renderer cubeRenderer;
+    MeshRenderer mesh;
+
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        cubeRenderer = GetComponent<Renderer>();
+        mesh = GetComponent<MeshRenderer>();
     }
-    // Update is called once per frame
-    void Update()
+
+    public void OnPointerEnter()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        // Optional: highlight on gaze
+         mesh.enabled = true;
+        cubeRenderer.material.color = Color.yellow;
+    }
+
+    public void OnPointerExit()
+    {
+        // Reset when gaze leaves
+        cubeRenderer.material.color = Color.white;
+         mesh.enabled = false;
+    }
+
+    public void OnPointerClick()
+    {
+        cubeRenderer.material.color = Color.red;
     }
 }
