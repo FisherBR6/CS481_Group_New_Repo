@@ -8159,6 +8159,7 @@ GameObject:
   - component: {fileID: 1263218793}
   - component: {fileID: 1263218792}
   - component: {fileID: 1263218791}
+  - component: {fileID: 1263218795}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -8249,6 +8250,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 1000, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1263218795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263218790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4139c8303d35e4c47b25df9c2f26fc75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button0: {fileID: 1833934388}
+  button1: {fileID: 111424483}
+  button2: {fileID: 909760681}
+  button3: {fileID: 1083586009}
+  button4: {fileID: 1641910679}
+  button5: {fileID: 1888445867}
+  button6: {fileID: 323500999}
+  button7: {fileID: 2135663411}
+  button8: {fileID: 1343227650}
+  button9: {fileID: 1652924362}
+  buttonA: {fileID: 723573941}
+  buttonB: {fileID: 1186979073}
+  buttonC: {fileID: 753719730}
+  buttonD: {fileID: 176805691}
+  buttonE: {fileID: 1373060922}
+  buttonF: {fileID: 1940856680}
+  buttonG: {fileID: 1747392758}
+  buttonH: {fileID: 520617392}
+  buttonI: {fileID: 600575355}
+  buttonJ: {fileID: 998519370}
+  buttonK: {fileID: 1669584456}
+  buttonL: {fileID: 403719419}
+  buttonM: {fileID: 1597252407}
+  buttonN: {fileID: 1758700563}
+  buttonO: {fileID: 1204043237}
+  buttonP: {fileID: 519352658}
+  buttonQ: {fileID: 1891900459}
+  buttonR: {fileID: 2036583593}
+  buttonS: {fileID: 2044390884}
+  buttonT: {fileID: 421948528}
+  buttonU: {fileID: 105179293}
+  buttonV: {fileID: 1339143635}
+  buttonW: {fileID: 541829725}
+  buttonX: {fileID: 1869245442}
+  buttonY: {fileID: 401836271}
+  buttonZ: {fileID: 1413701198}
+  buttonTab: {fileID: 412639348}
+  buttonDelete: {fileID: 1064883540}
+  buttonEnter: {fileID: 1175903122}
+  buttonCaps: {fileID: 1529322966}
+  buttonSpace: {fileID: 1465794726}
+  buttonComma: {fileID: 1146566791}
+  buttonPeriod: {fileID: 861097810}
+  prevButton: {fileID: 0}
+  fileName: 
 --- !u!1 &1300602626
 GameObject:
   m_ObjectHideFlags: 0
