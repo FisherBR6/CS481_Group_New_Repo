@@ -8181,6 +8181,7 @@ GameObject:
   - component: {fileID: 1263218792}
   - component: {fileID: 1263218791}
   - component: {fileID: 1263218795}
+  - component: {fileID: 1263218796}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -8298,6 +8299,63 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1263218796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263218790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4139c8303d35e4c47b25df9c2f26fc75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button0: {fileID: 1286394050}
+  button1: {fileID: 1633785264}
+  button2: {fileID: 1415703252}
+  button3: {fileID: 1117761524}
+  button4: {fileID: 1055849777}
+  button5: {fileID: 340544676}
+  button6: {fileID: 700676550}
+  button7: {fileID: 1433054268}
+  button8: {fileID: 558797308}
+  button9: {fileID: 799231008}
+  buttonA: {fileID: 54071952}
+  buttonB: {fileID: 866822906}
+  buttonC: {fileID: 1065102187}
+  buttonD: {fileID: 508256341}
+  buttonE: {fileID: 765256982}
+  buttonF: {fileID: 2000258866}
+  buttonG: {fileID: 432589945}
+  buttonH: {fileID: 1855300702}
+  buttonI: {fileID: 1537128535}
+  buttonJ: {fileID: 662577928}
+  buttonK: {fileID: 1823047967}
+  buttonL: {fileID: 1248969684}
+  buttonM: {fileID: 339214131}
+  buttonN: {fileID: 642855271}
+  buttonO: {fileID: 14534165}
+  buttonP: {fileID: 1445920466}
+  buttonQ: {fileID: 1794150733}
+  buttonR: {fileID: 1740471994}
+  buttonS: {fileID: 1954782393}
+  buttonT: {fileID: 622492664}
+  buttonU: {fileID: 690619467}
+  buttonV: {fileID: 1705547535}
+  buttonW: {fileID: 1632001769}
+  buttonX: {fileID: 455498381}
+  buttonY: {fileID: 934737518}
+  buttonZ: {fileID: 366711825}
+  buttonTab: {fileID: 1894399386}
+  buttonDelete: {fileID: 1046784669}
+  buttonEnter: {fileID: 1422486648}
+  buttonCaps: {fileID: 1455515562}
+  buttonSpace: {fileID: 1516328038}
+  buttonComma: {fileID: 0}
+  buttonPeriod: {fileID: 0}
+  prevButton: {fileID: 0}
+  fileName: 
 --- !u!1 &1286394048
 GameObject:
   m_ObjectHideFlags: 0
@@ -9755,7 +9813,7 @@ GameObject:
   - component: {fileID: 1516328038}
   - component: {fileID: 1516328041}
   m_Layer: 5
-  m_Name: Space
+  m_Name: Spacebar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

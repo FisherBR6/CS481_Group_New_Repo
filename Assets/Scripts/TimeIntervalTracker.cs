@@ -140,13 +140,6 @@ public class TimeIntervalTracker : MonoBehaviour
 
     public void WriteToCSV(Button currentButton, string interval)
     {
-        // Generate file name if it’s missing
-        if (string.IsNullOrEmpty(fileName))
-        {
-            fileName = $"TimeIntervalTracker_{DateTime.Now:yyyy/MM/dd_HH:mm:ss.fff}.csv";
-            Debug.LogWarning("fileName was empty. Auto-generated a new one.");
-        }
-
         // Save to: Assets/Time_Interval_Performance_Files/
         string fullPath = Path.Combine(Application.dataPath, "Time_Interval_Performance_Files", fileName);
 
@@ -155,8 +148,16 @@ public class TimeIntervalTracker : MonoBehaviour
             // Ensure the directory exists
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
+            // Check if file exists to optionally write a header
+            bool fileExists = File.Exists(fullPath);
+
             using (var writer = new StreamWriter(fullPath, true))
             {
+                if (!fileExists)
+                {
+                    writer.WriteLine("Previous Button,Current Button,Time Interval");
+                }
+
                 writer.WriteLine($"{prevButton.name},{currentButton.name},{interval}");
             }
 
@@ -167,6 +168,7 @@ public class TimeIntervalTracker : MonoBehaviour
             Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
         }
     }
+
 
 
 }
