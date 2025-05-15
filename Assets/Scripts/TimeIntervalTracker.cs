@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Stopwatch = System.Diagnostics.Stopwatch;
-using System.Globalization;
 using System.IO;
 
 public class TimeIntervalTracker : MonoBehaviour
@@ -57,13 +56,19 @@ public class TimeIntervalTracker : MonoBehaviour
 
     public Button prevButton;
 
-    public String fileName;
+    public string fileName;
 
     private void Start()
     {
         stopwatch = new Stopwatch();
 
-        // Manually wire up listeners for each button
+        // Ensure filename is initialized early
+        if (string.IsNullOrEmpty(fileName))
+        {
+            fileName = $"TimeIntervalTracker_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+        }
+
+        // Wire up listeners for each button manually
         button0.onClick.AddListener(() => OnAnyRelevantButtonPressed(button0));
         button1.onClick.AddListener(() => OnAnyRelevantButtonPressed(button1));
         button2.onClick.AddListener(() => OnAnyRelevantButtonPressed(button2));
@@ -109,141 +114,59 @@ public class TimeIntervalTracker : MonoBehaviour
         buttonPeriod.onClick.AddListener(() => OnAnyRelevantButtonPressed(buttonPeriod));
     }
 
-    // The method that is called when any button is pressed
     public void OnAnyRelevantButtonPressed(Button pressedButton)
     {
-        //UnityEngine.Debug.Log($"Button pressed: {pressedButton.name}");
-
         if (!trackFlag)
         {
-            switch (pressedButton.name)
-            {
-                // Numeric and alphabetic buttons
-                case "0":
-                case "1":
-                case "2":
-                case "3":
-                case "4":
-                case "5":
-                case "6":
-                case "7":
-                case "8":
-                case "9":
-                case "a":
-                case "b":
-                case "c":
-                case "d":
-                case "e":
-                case "f":
-                case "g":
-                case "h":
-                case "i":
-                case "j":
-                case "k":
-                case "l":
-                case "m":
-                case "n":
-                case "o":
-                case "p":
-                case "q":
-                case "r":
-                case "s":
-                case "t":
-                case "u":
-                case "v":
-                case "w":
-                case "x":
-                case "y":
-                case "z":
-                case "Tab":
-                case "Delete":
-                case "Enter":
-                case "Caps":
-                case "Spacebar":
-                case "Comma":
-                case "Period":
-                    stopwatch.Start(); // Start the stopwatch
-                    if(fileName == null)
-                        fileName = $"TimeIntervalTracker{DateTime.Now:HH:mm:ss.fff}.csv";
-                    UnityEngine.Debug.Log($"Button {pressedButton.name} pressed starting the application at time {DateTime.Now:HH:mm:ss.fff}");
-                    prevButton = pressedButton;
-                    //create a new csv file
-
-                    trackFlag = true; // Set the flag to true after starting
-                    break;
-            }
+            stopwatch.Start();
+            fileName = $"TimeIntervalTracker_{DateTime.Now:yyyyMMdd_HHmmssfff}.csv";
+            Debug.Log($"Button {pressedButton.name} pressed. Starting tracking at {DateTime.Now:HH:mm:ss.fff}");
+            prevButton = pressedButton;
+            trackFlag = true;
         }
         else
         {
-            // If trackFlag is true, handle as you did before:
-            switch (pressedButton.name)
-            {
-                // Numeric and alphabetic buttons
-                case "0":
-                case "1":
-                case "2":
-                case "3":
-                case "4":
-                case "5":
-                case "6":
-                case "7":
-                case "8":
-                case "9":
-                case "a":
-                case "b":
-                case "c":
-                case "d":
-                case "e":
-                case "f":
-                case "g":
-                case "h":
-                case "i":
-                case "j":
-                case "k":
-                case "l":
-                case "m":
-                case "n":
-                case "o":
-                case "p":
-                case "q":
-                case "r":
-                case "s":
-                case "t":
-                case "u":
-                case "v":
-                case "w":
-                case "x":
-                case "y":
-                case "z":
-                case "Tab":
-                case "Delete":
-                case "Enter":
-                case "Caps":
-                case "Spacebar":
-                case "Comma":
-                case "Period":
-                    stopwatch.Stop(); // Stop the stopwatch
-                    UnityEngine.Debug.Log($"{prevButton.name} -> {pressedButton.name} in {stopwatch.ElapsedMilliseconds / 1000f:0.000} seconds");
-                    WriteToCSV(pressedButton, $"{stopwatch.ElapsedMilliseconds / 1000f:0.000}");
-                    prevButton = pressedButton;
-                    //write buttons and time interval to the existing csv
-                    
+            stopwatch.Stop();
+            string interval = $"{stopwatch.ElapsedMilliseconds / 1000f:0.000}";
+            Debug.Log($"{prevButton.name} -> {pressedButton.name} in {interval} seconds");
 
-                    stopwatch.Reset(); // Reset the stopwatch
-                    stopwatch.Start(); // Start again for the next interval
-                    break;
-            }
+            WriteToCSV(pressedButton, interval);
+
+            prevButton = pressedButton;
+            stopwatch.Reset();
+            stopwatch.Start();
         }
     }
 
     public void WriteToCSV(Button currentButton, string interval)
     {
-        // Open the file in append mode (if it doesn't exist, it will be created)
-        using (var writer = new StreamWriter(fileName, true)) // 'true' for appending
+        // Generate file name if it’s missing
+        if (string.IsNullOrEmpty(fileName))
         {
-            // Write a line with the button names and the interval
-            writer.WriteLine($"{prevButton.name},{currentButton.name},{interval}");
+            fileName = $"TimeIntervalTracker_{DateTime.Now:yyyy/MM/dd_HH:mm:ss.fff}.csv";
+            Debug.LogWarning("fileName was empty. Auto-generated a new one.");
+        }
+
+        // Save to: Assets/Time_Interval_Performance_Files/
+        string fullPath = Path.Combine(Application.dataPath, "Time_Interval_Performance_Files", fileName);
+
+        try
+        {
+            // Ensure the directory exists
+            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+
+            using (var writer = new StreamWriter(fullPath, true))
+            {
+                writer.WriteLine($"{prevButton.name},{currentButton.name},{interval}");
+            }
+
+            Debug.Log($"Logged data to: {fullPath}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
         }
     }
+
 
 }
