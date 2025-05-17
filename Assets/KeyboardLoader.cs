@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class KeyboardLoader : MonoBehaviour
 {
-    public string currentKeyboardScene = "QWERTY_Scene";
+    public string currentKeyboardScene = "New_Qwerty";
     public string abcKeyboardScene = "ABC_Scene";
 
     public void SwitchToABCKeyboard()

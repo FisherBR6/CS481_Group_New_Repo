@@ -8,35 +8,44 @@ public class KeyButton : MonoBehaviour
 {
     void Start()
     {
-        GetComponent<Button>().onClick.AddListener(OnKeyPress);
+        //GetComponent<Button>().onClick.AddListener(OnKeyPressed);
     }
 
-    void OnKeyPress()
+    void OnKeyPressed()
     {
         string keyName = gameObject.name;
 
+        
+       
+
         if (keyName == "Delete")
         {
+            Debug.Log("Delete key pressed");
             KeyboardTextDisplay.Instance.Backspace();
         }
         else if (keyName == "Spacebar")
         {
+            Debug.Log("Spacebar key pressed");
             KeyboardTextDisplay.Instance.AddCharacter(" ");
         }
         else if (keyName == "Tab")
         {
+            Debug.Log("Tab key pressed");
             KeyboardTextDisplay.Instance.AddCharacter("   ");
         }
         else if(keyName == "Enter")
         {
+            Debug.Log("Enter key pressed");
             KeyboardTextDisplay.Instance.AddCharacter("\n");
         }
         else if(keyName == "ABC")
         {
+            Debug.Log("Switching to ABC keyboard");
             SceneManagerScript.LoadABC();
         }
         else if (keyName == "QWERTY")
         {
+            Debug.Log("Switching to Qwerty");
             SceneManagerScript.LoadQWERTY();
         }
         else if (keyName == "Caps")
@@ -45,6 +54,9 @@ public class KeyButton : MonoBehaviour
         }
         else if (keyName == "Input")
         {
+            //toggle input (added)
+            FindObjectOfType<InputManager>().ToggleInputMode();
+  
             Debug.Log("Input switched");
         }
         else if (keyName == "Save")
@@ -84,6 +96,7 @@ public class KeyButton : MonoBehaviour
             if (tmpText != null)
             {
                 string character = tmpText.text;
+                Debug.Log($"Key Pressed: {character}");
                 KeyboardTextDisplay.Instance.AddCharacter(character);
             }
             else

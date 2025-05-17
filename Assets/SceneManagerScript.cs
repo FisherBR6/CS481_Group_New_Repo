@@ -10,18 +10,18 @@ public class SceneManagerScript : MonoBehaviour
     void Start()
     {
         Debug.Log("Attempting to load QWERTY script...");
-        SceneManager.LoadScene("QWERTY_Scene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("New_Qwerty", LoadSceneMode.Additive);
     }
 
     public static void LoadABC()
     {
-        SceneManager.UnloadSceneAsync("QWERTY_Scene");
+        SceneManager.UnloadSceneAsync("New_Qwerty");
         SceneManager.LoadScene("ABC_Scene", LoadSceneMode.Additive);
     }
 
     public static void LoadQWERTY()
     {
         SceneManager.UnloadSceneAsync("ABC_Scene");
-        SceneManager.LoadScene("QWERTY_Scene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("New_Qwerty", LoadSceneMode.Additive);
     }
 }
