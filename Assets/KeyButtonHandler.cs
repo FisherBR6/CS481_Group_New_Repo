@@ -6,9 +6,36 @@ using UnityEngine.UI;
 
 public class KeyButton : MonoBehaviour
 {
+    private Color default_color; 
+
+    bool isPressed = false;
+    private Renderer cubeRenderer;
+
+
+
     void Start()
     {
-        //GetComponent<Button>().onClick.AddListener(OnKeyPressed);
+        cubeRenderer = GetComponent<Renderer>();
+        GetComponent<Button>().onClick.AddListener(OnKeyPressed);
+        default_color = cubeRenderer.material.color; // Store the default color
+    }
+
+    void Update()
+    {
+        isPressed = Input.GetMouseButton(0);
+    }
+
+    /**
+        * Called when a user clicks on the button on the Headset.
+    */
+    public void OnPointerClick()
+    {
+        if (!isPressed)
+        {
+            cubeRenderer.material.color = Color.yellow;
+            OnKeyPressed();
+            cubeRenderer.material.color = default_color;
+        }
     }
 
     void OnKeyPressed()
