@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class SceneManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    // Assets/Scenes/QWERTY_Scene.unity
+    // Assets/Scenes/New_Qwerty.unity
     void Start()
     {
         Debug.Log("Attempting to load QWERTY script...");

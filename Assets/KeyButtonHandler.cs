@@ -12,6 +12,10 @@ public class KeyButton : MonoBehaviour
     //public List<TextMeshProUGUI> keys;
     //public KeyManager abcKeyManager;
     //public KeyManager qwertyKeyManager;
+    private Color default_color;
+
+    //bool isPressed = false;
+    private Renderer cubeRenderer;
 
     private TMP_Text Label;
 
@@ -20,6 +24,32 @@ public class KeyButton : MonoBehaviour
     {
         OnKeyPress();
     }
+
+    /*
+    void Start()
+    {
+        cubeRenderer = GetComponent<Renderer>();
+        GetComponent<Button>().onClick.AddListener(OnKeyPressed);
+        default_color = cubeRenderer.material.color; // Store the default color
+    }
+
+    void Update()
+    {
+        isPressed = Input.GetMouseButton(0);
+    }
+
+    /**
+        * Called when a user clicks on the button on the Headset.
+    *//*
+    public void OnPointerClick()
+    {
+        if (!isPressed)
+        {
+            cubeRenderer.material.color = Color.yellow;
+            OnKeyPressed();
+            cubeRenderer.material.color = default_color;
+        }
+    }*/
 
     void OnKeyPress()
     {
@@ -51,7 +81,6 @@ public class KeyButton : MonoBehaviour
         }
         else if (keyName == "Caps")
         {
-            Debug.Log("Caps lock Work in Progress");
             capslock = !capslock;
             UpdateKeyLabels();
         }
