@@ -1,5 +1,5 @@
 using UnityEngine;
-
+#if UNITY_EDITOR
 public class FirstPersonController : MonoBehaviour
 {
     public float sensitivity = 3f;
@@ -28,3 +28,4 @@ public class FirstPersonController : MonoBehaviour
         //transform.Rotate(Vector3.up * mouseX);
     }
 }
+#endif
