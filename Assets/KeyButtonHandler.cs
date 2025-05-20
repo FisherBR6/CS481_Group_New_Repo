@@ -20,37 +20,44 @@ public class KeyButton : MonoBehaviour
     private TMP_Text Label;
 
     public static bool capslock = false;
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        OnKeyPress();
-    }
+    bool isPressed = false;
 
-    /*
     void Start()
     {
+#if UNITY_EDITOR
+#elif UNITY_IOS || UNITY_ANDROID
         cubeRenderer = GetComponent<Renderer>();
-        GetComponent<Button>().onClick.AddListener(OnKeyPressed);
+        GetComponent<Button>().onClick.AddListener(OnKeyPress);
         default_color = cubeRenderer.material.color; // Store the default color
+#endif
     }
 
     void Update()
     {
+#if UNITY_IOS || UNITY_ANDROID
         isPressed = Input.GetMouseButton(0);
+#endif
     }
 
+#if UNITY_EDITOR
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnKeyPress();
+    }
+#elif UNITY_IOS || UNITY_ANDROID
     /**
         * Called when a user clicks on the button on the Headset.
-    *//*
+    */
     public void OnPointerClick()
     {
         if (!isPressed)
         {
             cubeRenderer.material.color = Color.yellow;
-            OnKeyPressed();
+            OnKeyPress();
             cubeRenderer.material.color = default_color;
         }
-    }*/
-
+    }
+#endif
     void OnKeyPress()
     {
         string keyName = gameObject.name;

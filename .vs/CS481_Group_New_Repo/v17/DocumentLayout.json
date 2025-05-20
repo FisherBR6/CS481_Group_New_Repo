@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\annac\\CS481_Group_New_Repo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\annac\\CS481_Group_New_Repo\\assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\annac\\cs481_group_new_repo\\assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,11 +11,11 @@
       "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\firstpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\annac\\cs481_group_new_repo\\assets\\editorcubeclicker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\annac\\CS481_Group_New_Repo\\assets\\editorcubeclicker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\editorcubeclicker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\annac\\cs481_group_new_repo\\assets\\keyboardloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\annac\\CS481_Group_New_Repo\\assets\\keyboardloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keyboardloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -46,8 +46,7 @@
               "RelativeToolTip": "Assets\\EditorCubeClicker.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T02:30:38.582Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T02:30:38.582Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "Assets\\FirstPersonController.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAmwAwAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T02:21:41.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T02:21:41.215Z"
             },
             {
               "$type": "Document",
@@ -70,7 +68,7 @@
               "RelativeDocumentMoniker": "Assets\\KeyButtonHandler.cs",
               "ToolTip": "C:\\Users\\annac\\CS481_Group_New_Repo\\Assets\\KeyButtonHandler.cs",
               "RelativeToolTip": "Assets\\KeyButtonHandler.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAC0AAAArAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwBUAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-17T08:56:46.608Z",
               "EditorCaption": ""
@@ -109,8 +107,7 @@
               "RelativeToolTip": "Assets\\KeyboardLoader.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T03:25:07.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-17T03:25:07.569Z"
             }
           ]
         }
