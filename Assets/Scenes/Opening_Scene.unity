@@ -250,7 +250,6 @@ GameObject:
   m_Component:
   - component: {fileID: 403567866}
   - component: {fileID: 403567865}
-  - component: {fileID: 403567864}
   - component: {fileID: 403567863}
   m_Layer: 0
   m_Name: GameManager
@@ -272,20 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reticlePointer: {fileID: 1781192223}
---- !u!114 &403567864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 403567862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee15ad1209652d4aaaaaae7a83fdab4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentKeyboardScene: New_Qwerty
-  abcKeyboardScene: New_Abc
+  reticleDummyTarget: {fileID: 0}
 --- !u!114 &403567865
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class SceneManagerScript : MonoBehaviour
     //Need to make it an instance because I need to call in keybutton script. Can't use statics on enumerator.
     public static SceneManagerScript Instance { get; private set; }
     public CardboardReticlePointer reticlePointer;
+    [SerializeField] private GameObject reticleDummyTarget;
 
     void Awake()
     {
@@ -38,8 +40,13 @@ public class SceneManagerScript : MonoBehaviour
 
     private IEnumerator SwitchScenes(string sceneUnload, string sceneLoad)
     {
+        yield return new WaitForSeconds(0.1f);
+        
         if (reticlePointer != null)
+        {
+            //reticlePointer.ClearCurrentTarget();
             reticlePointer.enabled = false;
+        }
 
         yield return SceneManager.UnloadSceneAsync(sceneUnload);
 
@@ -50,6 +57,16 @@ public class SceneManagerScript : MonoBehaviour
         yield return null;
 
         if (reticlePointer != null)
+        {
             reticlePointer.enabled = true;
+        }
+
+        EventSystem.current.SetSelectedGameObject(null);
+
+        RaycastHit hit;
+        if (Physics.Raycast(reticlePointer.transform.position, reticlePointer.transform.forward, out hit))
+        {
+            Debug.Log("Reticle is pointing at: " + hit.collider.name);
+        }
     }
 }
