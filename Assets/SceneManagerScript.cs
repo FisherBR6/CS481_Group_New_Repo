@@ -44,7 +44,7 @@ public class SceneManagerScript : MonoBehaviour
         
         if (reticlePointer != null)
         {
-            //reticlePointer.ClearCurrentTarget();
+            reticlePointer.ClearCurrentTarget();
             reticlePointer.enabled = false;
         }
 
