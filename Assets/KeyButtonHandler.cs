@@ -9,12 +9,7 @@ using UnityEngine.UI;
 
 public class KeyButton : MonoBehaviour
 {
-    //public List<TextMeshProUGUI> keys;
-    //public KeyManager abcKeyManager;
-    //public KeyManager qwertyKeyManager;
     private Color default_color;
-
-    //bool isPressed = false;
     private Renderer cubeRenderer;
 
     private TMP_Text Label;
@@ -80,11 +75,11 @@ public class KeyButton : MonoBehaviour
         }
         else if (keyName == "ABC")
         {
-            //SceneManagerScript.LoadABC();
+            SceneManagerScript.Instance.LoadABC();
         }
         else if (keyName == "QWERTY")
         {
-            //SceneManagerScript.LoadQWERTY();
+            SceneManagerScript.Instance.LoadQWERTY();
         }
         else if (keyName == "Caps")
         {
@@ -133,7 +128,10 @@ public class KeyButton : MonoBehaviour
             {
                 string character = tmpText.text;
                 if (character.Length == 1 && char.IsLetter(character[0]))
+                {
                     character = capslock ? character.ToUpper() : character.ToLower(); // If capslock is on, give the text display uppercase, otherwise, lowercase
+                    Debug.Log("Caps char " + character);
+                }
                 KeyboardTextDisplay.Instance.AddCharacter(character);
             }
             else

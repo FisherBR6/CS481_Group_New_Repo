@@ -10,7 +10,7 @@ public class EditorCubeClicker : MonoBehaviour
             Ray ray = new Ray(transform.position, transform.forward);
             if (Physics.Raycast(ray, out RaycastHit hit, 100f))
             {
-                Debug.Log("Editor clicked: " + hit.collider.gameObject.name);
+                //Debug.Log("Editor clicked: " + hit.collider.gameObject.name);
                 hit.collider.gameObject.SendMessage("OnKeyPress", SendMessageOptions.DontRequireReceiver);
             }
         }

@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/New_Qwerty.unity
     guid: 2bebbb59563864946863272d70fcbf64
   - enabled: 1
+    path: Assets/Scenes/New_Abc.unity
+    guid: af1f6774f99349348b8abe5140a7c7e6
+  - enabled: 0
     path: Assets/Scenes/ABC_Scene.unity
     guid: 1c814d0548090414fb95a271b6b2af17
   m_configObjects:
