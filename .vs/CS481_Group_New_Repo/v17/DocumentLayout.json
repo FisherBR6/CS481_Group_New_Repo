@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\assets\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\assets\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\assets\\keyboardloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keyboardloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\assets\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\assets\\keyboardtextdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keyboardtextdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|c:\\users\\rocar\\desktop\\capstone_481\\cs481_group_new_repo\\assets\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\assets\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\assets\\keyboardtextdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|solutionrelative:assets\\keyboardtextdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B8EB2B89-4767-B868-51AB-3EE51F13DDF6}|Assembly-CSharp.csproj|C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\assets\\keybuttonhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
@@ -54,8 +54,7 @@
               "RelativeToolTip": "Library\\PackageCache\\com.unity.render-pipelines.universal@14.0.12\\Shaders\\Lit.shader",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2025-05-17T11:12:45.262Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-17T11:12:45.262Z"
             },
             {
               "$type": "Document",
@@ -67,12 +66,11 @@
               "RelativeToolTip": "Assets\\KeyButtonHandler.cs",
               "ViewState": "AgIAAFAAAAAAAAAAAAAAABIAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T08:56:46.608Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-17T08:56:46.608Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "KeyboardTextDisplay.cs",
               "DocumentMoniker": "C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\Assets\\KeyboardTextDisplay.cs",
               "RelativeDocumentMoniker": "Assets\\KeyboardTextDisplay.cs",
@@ -85,7 +83,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "InputManager.cs",
               "DocumentMoniker": "C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\Assets\\InputManager.cs",
               "RelativeDocumentMoniker": "Assets\\InputManager.cs",
@@ -98,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\Assets\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Player.cs",
@@ -106,18 +104,17 @@
               "RelativeToolTip": "Assets\\Player.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T08:12:23.011Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-17T08:12:23.011Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "SceneManagerScript.cs",
               "DocumentMoniker": "C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\Assets\\SceneManagerScript.cs",
               "RelativeDocumentMoniker": "Assets\\SceneManagerScript.cs",
               "ToolTip": "C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\Assets\\SceneManagerScript.cs",
               "RelativeToolTip": "Assets\\SceneManagerScript.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-17T03:24:53.455Z",
               "EditorCaption": ""
@@ -130,7 +127,7 @@
               "RelativeDocumentMoniker": "Assets\\KeyboardLoader.cs",
               "ToolTip": "C:\\Users\\rocar\\Desktop\\Capstone_481\\CS481_Group_New_Repo\\Assets\\KeyboardLoader.cs",
               "RelativeToolTip": "Assets\\KeyboardLoader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-17T03:25:07.569Z",
               "EditorCaption": ""

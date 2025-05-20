@@ -298,6 +298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 682893787}
+  dwellTime: 2
+  useDwell: 0
 --- !u!4 &403567866
 Transform:
   m_ObjectHideFlags: 0
