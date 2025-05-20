@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reticlePointer: {fileID: 1781192223}
-  reticleDummyTarget: {fileID: 0}
 --- !u!114 &403567865
 MonoBehaviour:
   m_ObjectHideFlags: 0

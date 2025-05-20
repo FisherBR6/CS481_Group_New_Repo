@@ -10,7 +10,7 @@ public class SceneManagerScript : MonoBehaviour
     //Need to make it an instance because I need to call in keybutton script. Can't use statics on enumerator.
     public static SceneManagerScript Instance { get; private set; }
     public CardboardReticlePointer reticlePointer;
-    [SerializeField] private GameObject reticleDummyTarget;
+ 
 
     void Awake()
     {

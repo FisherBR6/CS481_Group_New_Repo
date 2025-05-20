@@ -82,7 +82,7 @@ public class InputManager : MonoBehaviour
     void TriggerKey(GameObject keyObj)
     {
         Debug.Log($"Key triggered: {keyObj.name}");
-        keyObj.SendMessage("OnKeyPressed", SendMessageOptions.DontRequireReceiver);
+        keyObj.SendMessage("OnKeyPress", SendMessageOptions.DontRequireReceiver);
     }
 
     

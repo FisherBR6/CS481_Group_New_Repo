@@ -16,6 +16,8 @@ public class KeyButton : MonoBehaviour
 
     public static bool capslock = false;
     bool isPressed = false;
+    public void OnPointerEnter() { }
+    public void OnPointerExit() { }
 
     void Start()
     {
