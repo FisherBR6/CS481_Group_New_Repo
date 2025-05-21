@@ -1,16 +1,60 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection.Emit;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class KeyButton : MonoBehaviour
 {
+    private Color default_color;
+    private Renderer cubeRenderer;
+
+    private TMP_Text Label;
+
+    public static bool capslock = false;
+    bool isPressed = false;
+    public void OnPointerEnter() { }
+    public void OnPointerExit() { }
+
     void Start()
     {
+#if UNITY_EDITOR
+#elif UNITY_IOS || UNITY_ANDROID
+        cubeRenderer = GetComponent<Renderer>();
         GetComponent<Button>().onClick.AddListener(OnKeyPress);
+        default_color = cubeRenderer.material.color; // Store the default color
+#endif
     }
 
+    void Update()
+    {
+#if UNITY_IOS || UNITY_ANDROID
+        isPressed = Input.GetMouseButton(0);
+#endif
+    }
+
+#if UNITY_EDITOR
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnKeyPress();
+    }
+#elif UNITY_IOS || UNITY_ANDROID
+    /**
+        * Called when a user clicks on the button on the Headset.
+    */
+    public void OnPointerClick()
+    {
+        if (!isPressed)
+        {
+            cubeRenderer.material.color = Color.yellow;
+            OnKeyPress();
+            cubeRenderer.material.color = default_color;
+        }
+    }
+#endif
     void OnKeyPress()
     {
         string keyName = gameObject.name;
@@ -19,7 +63,7 @@ public class KeyButton : MonoBehaviour
         {
             KeyboardTextDisplay.Instance.Backspace();
         }
-        else if (keyName == "Spacebar")
+        else if (keyName == "Space")
         {
             KeyboardTextDisplay.Instance.AddCharacter(" ");
         }
@@ -27,25 +71,26 @@ public class KeyButton : MonoBehaviour
         {
             KeyboardTextDisplay.Instance.AddCharacter("   ");
         }
-        else if(keyName == "Enter")
+        else if (keyName == "Enter")
         {
             KeyboardTextDisplay.Instance.AddCharacter("\n");
         }
-        else if(keyName == "ABC")
+        else if (keyName == "ABC")
         {
-            SceneManagerScript.LoadABC();
+            SceneManagerScript.Instance.LoadABC();
         }
         else if (keyName == "QWERTY")
         {
-            SceneManagerScript.LoadQWERTY();
+            SceneManagerScript.Instance.LoadQWERTY();
         }
         else if (keyName == "Caps")
         {
-            Debug.Log("Caps enabled");
+            capslock = !capslock;
+            UpdateKeyLabels();
         }
         else if (keyName == "Input")
         {
-            Debug.Log("Input switched");
+            Debug.Log("Input switch work in progress");
         }
         else if (keyName == "Save")
         {
@@ -75,7 +120,7 @@ public class KeyButton : MonoBehaviour
             {
                 Debug.LogError("error saving file: " + e.Message);
             }
-                    
+
         }
         else
         {
@@ -84,6 +129,11 @@ public class KeyButton : MonoBehaviour
             if (tmpText != null)
             {
                 string character = tmpText.text;
+                if (character.Length == 1 && char.IsLetter(character[0]))
+                {
+                    character = capslock ? character.ToUpper() : character.ToLower(); // If capslock is on, give the text display uppercase, otherwise, lowercase
+                    Debug.Log("Caps char " + character);
+                }
                 KeyboardTextDisplay.Instance.AddCharacter(character);
             }
             else
@@ -91,7 +141,20 @@ public class KeyButton : MonoBehaviour
                 Debug.LogWarning("No text found on key.");
             }
         }
+    }
 
-
+    /** 
+     * This is a method to update all the necessary keys to caps. It takes all the objects with the keybutton tag, then loops through
+     * If the key is of length 1 (keeps from messing with space and so on), then if caps lock is enabled, move to lowercase, otherwise to upper
+     */
+    private void UpdateKeyLabels()
+    {
+        KeyButton[] keys = FindObjectsOfType<KeyButton>();
+        foreach (var key in keys)
+        {
+            TMP_Text text = key.GetComponentInChildren<TMPro.TMP_Text>();
+            if (text != null && text.text.Length == 1 && char.IsLetter(text.text[0]))
+                text.text = capslock ? text.text.ToUpper() : text.text.ToLower();
+        }
     }
 }

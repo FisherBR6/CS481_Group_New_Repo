@@ -1,39 +1,40 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
     public Camera mainCamera;
-    private GraphicRaycaster graphicRaycaster;  // The raycaster for UI
-    private Canvas canvas; 
+    public float dwellTime = 2f; // seconds to trigger a dwell
+    public bool useDwell = false;
 
-    private void Start()
+    private GameObject currentTarget = null;
+    private float gazeTimer = 0f;
+
+    public void Awake()
     {
-        FindCanvasAfterSceneLoad();
+        DontDestroyOnLoad(gameObject);
     }
-
     private void Update()
     {
-        // Check if it's a computer and use mouse input
+        Ray ray;
+
+        // Determine platform-specific ray
         if (Application.isEditor || Application.platform == RuntimePlatform.WindowsPlayer)
         {
-            Vector2 mousePosition = Input.mousePosition;
-
-            Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-            HandleRaycast(ray);
+            ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         }
-        // Mobile devices will use the CardboardReticlePointer for raycasting
-        else if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        else
         {
-            CardboardReticlePointer reticlePointer = mainCamera.GetComponentInChildren<CardboardReticlePointer>();
-            if (reticlePointer != null)
-            {
-                Ray ray = new Ray(reticlePointer.transform.position, reticlePointer.transform.forward);
-                HandleRaycast(ray);
-            }
+            var reticlePointer = mainCamera.GetComponentInChildren<CardboardReticlePointer>();
+            if (reticlePointer == null) return;
+            ray = new Ray(reticlePointer.transform.position, reticlePointer.transform.forward);
+        }
+
+        HandleRaycast(ray);
+
+        if (!useDwell && Google.XR.Cardboard.Api.IsTriggerPressed && currentTarget != null)
+        {
+            TriggerKey(currentTarget);
         }
     }
 
@@ -42,37 +43,53 @@ public class InputManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            GameObject hitObject = hit.collider.gameObject;
+            GameObject hitObj = hit.collider.gameObject;
 
-            if (hitObject.CompareTag("KeyButton"))
+            if (hitObj.CompareTag("KeyButton"))
             {
-                Debug.Log($"Key pressed: {hitObject.name}");
-            }
-        }
-    }
-
-    private IEnumerator FindCanvasAfterSceneLoad()
-    {
-        yield return new WaitForSeconds(0.5f);
-        // Check if the scene is loaded and active
-        Scene qwertyScene = SceneManager.GetSceneByName("QWERTY");
-        if (qwertyScene.isLoaded)
-        {
-            Debug.Log("QWERTY scene is loaded.");
-            canvas = FindObjectOfType<Canvas>();
-            if (canvas != null)
-            {
-                graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
-                Debug.Log("Canvas found and GraphicRaycaster attached.");
+                if (hitObj != currentTarget)
+                {
+                    currentTarget = hitObj;
+                    gazeTimer = 0f;
+                }
+                else if (useDwell)
+                {
+                    gazeTimer += Time.deltaTime;
+                    if (gazeTimer >= dwellTime)
+                    {
+                        TriggerKey(currentTarget);
+                        gazeTimer = 0f; // prevent repeat triggering
+                    }
+                }
             }
             else
             {
-                Debug.LogError("No Canvas found in the loaded scene.");
+                ResetGaze();
             }
         }
         else
         {
-            Debug.LogError("QWERTY scene is not loaded yet.");
+            ResetGaze();
         }
     }
+
+    void ResetGaze()
+    {
+        currentTarget = null;
+        gazeTimer = 0f;
+    }
+
+    void TriggerKey(GameObject keyObj)
+    {
+        Debug.Log($"Key triggered: {keyObj.name}");
+        keyObj.SendMessage("OnKeyPress", SendMessageOptions.DontRequireReceiver);
+    }
+
+    
+    public void ToggleInputMode()
+    {
+        useDwell = !useDwell;
+        Debug.Log("Input mode changed: " + (useDwell ? "Dwell" : "Click"));
+    }
 }
+
