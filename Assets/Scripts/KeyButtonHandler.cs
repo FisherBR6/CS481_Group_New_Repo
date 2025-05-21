@@ -57,6 +57,14 @@ public class KeyButton : MonoBehaviour, IPointerClickHandler
     }
 #endif
 
+    public void OnPointerEnter()
+    {
+    }
+
+    public void OnPointerExit()
+    {
+    }
+
     void OnKeyPress()
     {
         if (sceneManagerScript == null)
