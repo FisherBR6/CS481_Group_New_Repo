@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -11,10 +10,11 @@ public class KeyButton : MonoBehaviour, IPointerClickHandler
     private Color default_color;
     private Renderer cubeRenderer;
 
-    public SceneManagerScript sceneManagerScript; // Assigned via Inspector
+    private static bool capslock = false;
+    private bool isPressed = false;
 
-    public static bool capslock = false;
-    bool isPressed = false;
+    // FIX: Ensure this is assigned automatically to avoid null reference
+    private SceneManagerScript sceneManagerScript;
 
     void Start()
     {
@@ -25,12 +25,11 @@ public class KeyButton : MonoBehaviour, IPointerClickHandler
         default_color = cubeRenderer.material.color;
 #endif
 
-        // Optional: assign sceneManagerScript automatically if not set
+        // Minimal fix: assign sceneManagerScript
+        sceneManagerScript = SceneManagerScript.Instance;
         if (sceneManagerScript == null)
         {
-            sceneManagerScript = FindObjectOfType<SceneManagerScript>();
-            if (sceneManagerScript == null)
-                Debug.LogError("SceneManagerScript not found in scene.");
+            Debug.LogError("SceneManagerScript.Instance is null — make sure it's initialized.");
         }
     }
 
@@ -152,7 +151,9 @@ public class KeyButton : MonoBehaviour, IPointerClickHandler
         {
             TMP_Text text = key.GetComponentInChildren<TMP_Text>();
             if (text != null && text.text.Length == 1 && char.IsLetter(text.text[0]))
+            {
                 text.text = capslock ? text.text.ToUpper() : text.text.ToLower();
+            }
         }
     }
 }

@@ -95,7 +95,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         stopwatch.Start(); // Start the stopwatch
         if (fileName == null)
-            fileName = $"TimeIntervalTracker{DateTime.Now:yyyyMMdd_HH:mm:ss.fff}.csv";
+            fileName = $"TimeIntervalTracker{DateTime.Now:yyyyMMdd_HHmmss.fff}.csv";
         UnityEngine.Debug.Log($"Button {pressedButton} pressed starting the application at time {DateTime.Now:HH:mm:ss.fff}");
         prevButton = pressedButton;
         //create a new csv file
@@ -125,7 +125,7 @@ public class SceneManagerScript : MonoBehaviour
         {
             // Write a line with the button names and the interval
             writer.WriteLine($"{prevButton},{currentButton},{interval}");
-            fileName = $"TimeIntervalTracker_{DateTime.Now:yyyyMMdd_HH:mm:ss.fff}.csv";
+            fileName = $"TimeIntervalTracker_{DateTime.Now:yyyyMMdd_HHmmss.fff}.csv";
             Debug.LogWarning("fileName was empty. Auto-generated a new one.");
         }
 
