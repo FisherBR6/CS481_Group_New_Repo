@@ -77,10 +77,12 @@ public class KeyButton : MonoBehaviour
         }
         else if (keyName == "ABC")
         {
+            capslock = !capslock;
             SceneManagerScript.Instance.LoadABC();
         }
         else if (keyName == "QWERTY")
         {
+            capslock = !capslock;
             SceneManagerScript.Instance.LoadQWERTY();
         }
         else if (keyName == "Caps")
@@ -95,6 +97,7 @@ public class KeyButton : MonoBehaviour
         else if (keyName == "Save")
         {
             Debug.Log("File saving in progress...");
+            capslock = !capslock;
             string textToSave = KeyboardTextDisplay.Instance.getCurrentText();
 
             if (string.IsNullOrEmpty(textToSave))
