@@ -118,37 +118,31 @@ public class SceneManagerScript : MonoBehaviour
     
     public void WriteToCSV(string currentButton, string interval)
     {
-        // Open the file in append mode (if it doesn't exist, it will be created)
-        using (var writer = new StreamWriter(fileName, true)) // 'true' for appending
-        // Generate file name if it’s missing
         if (string.IsNullOrEmpty(fileName))
         {
-            // Write a line with the button names and the interval
-            writer.WriteLine($"{prevButton},{currentButton},{interval}");
             fileName = $"TimeIntervalTracker_{DateTime.Now:yyyyMMdd_HHmmss.fff}.csv";
             Debug.LogWarning("fileName was empty. Auto-generated a new one.");
         }
 
-        // Save to: Assets/Time_Interval_Performance_Files/
-        string fullPath = Path.Combine(Application.dataPath, "Time_Interval_Performance_Files", fileName);
+        // ✅ Go up two levels from Assets/ to get out of the Unity project folder
+        string folderPath = Path.Combine(Application.dataPath, "../../Time_Interval_Performance_Files");
+        string fullPath = Path.Combine(folderPath, fileName);
 
         try
         {
-            // Ensure the directory exists
-            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+            Directory.CreateDirectory(folderPath);
 
             using (var writer = new StreamWriter(fullPath, true))
             {
                 writer.WriteLine($"{prevButton},{currentButton},{interval}");
             }
 
-            Debug.Log($"Logged data to: {fullPath}");
+            Debug.Log($"Logged data to: {Path.GetFullPath(fullPath)}");
         }
         catch (Exception ex)
         {
             Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
         }
     }
-
 
 }
