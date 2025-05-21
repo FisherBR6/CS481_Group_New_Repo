@@ -1,16 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using Stopwatch = System.Diagnostics.Stopwatch;
+using System.Globalization;
+using System.IO;
 public class SceneManagerScript : MonoBehaviour
 {
     //Need to make it an instance because I need to call in keybutton script. Can't use statics on enumerator.
     public static SceneManagerScript Instance { get; private set; }
     public CardboardReticlePointer reticlePointer;
- 
+
+    Boolean trackFlag = false;
+    string fileName;
+
+    string prevButton;
+    Stopwatch stopwatch = new Stopwatch();
+
 
     void Awake()
     {
@@ -41,7 +50,7 @@ public class SceneManagerScript : MonoBehaviour
     private IEnumerator SwitchScenes(string sceneUnload, string sceneLoad)
     {
         yield return new WaitForSeconds(0.1f);
-        
+
         if (reticlePointer != null)
         {
             reticlePointer.ClearCurrentTarget();
@@ -69,4 +78,77 @@ public class SceneManagerScript : MonoBehaviour
             Debug.Log("Reticle is pointing at: " + hit.collider.name);
         }
     }
+
+    public Boolean TimerStatus()
+    {
+        if (trackFlag)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void StartTracking(string pressedButton)
+    {
+        stopwatch.Start(); // Start the stopwatch
+        if (fileName == null)
+            fileName = $"TimeIntervalTracker{DateTime.Now:yyyyMMdd_HH:mm:ss.fff}.csv";
+        UnityEngine.Debug.Log($"Button {pressedButton} pressed starting the application at time {DateTime.Now:HH:mm:ss.fff}");
+        prevButton = pressedButton;
+        //create a new csv file
+
+        trackFlag = true; // Set the flag to true after starting
+    }
+
+    public void ContinueTracking(string pressedButton)
+    {
+        stopwatch.Stop(); // Stop the stopwatch
+        UnityEngine.Debug.Log($"{prevButton} -> {pressedButton} in {stopwatch.ElapsedMilliseconds / 1000f:0.000} seconds");
+        WriteToCSV(pressedButton, $"{stopwatch.ElapsedMilliseconds / 1000f:0.000}");
+        prevButton = pressedButton;
+        //write buttons and time interval to the existing csv
+
+
+        stopwatch.Reset(); // Reset the stopwatch
+        stopwatch.Start(); // Start again for the next interval
+    }
+    
+    public void WriteToCSV(string currentButton, string interval)
+    {
+        // Open the file in append mode (if it doesn't exist, it will be created)
+        using (var writer = new StreamWriter(fileName, true)) // 'true' for appending
+        // Generate file name if it’s missing
+        if (string.IsNullOrEmpty(fileName))
+        {
+            // Write a line with the button names and the interval
+            writer.WriteLine($"{prevButton},{currentButton},{interval}");
+            fileName = $"TimeIntervalTracker_{DateTime.Now:yyyyMMdd_HH:mm:ss.fff}.csv";
+            Debug.LogWarning("fileName was empty. Auto-generated a new one.");
+        }
+
+        // Save to: Assets/Time_Interval_Performance_Files/
+        string fullPath = Path.Combine(Application.dataPath, "Time_Interval_Performance_Files", fileName);
+
+        try
+        {
+            // Ensure the directory exists
+            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+
+            using (var writer = new StreamWriter(fullPath, true))
+            {
+                writer.WriteLine($"{prevButton},{currentButton},{interval}");
+            }
+
+            Debug.Log($"Logged data to: {fullPath}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
+        }
+    }
+
+
 }
