@@ -125,7 +125,7 @@ public class SceneManagerScript : MonoBehaviour
         }
 
         // ✅ Go up two levels from Assets/ to get out of the Unity project folder
-        string folderPath = Path.Combine(Application.dataPath, "../../Time_Interval_Performance_Files");
+        string folderPath = Path.Combine(Application.dataPath, "../Time_Interval_Performance_Files");
         string fullPath = Path.Combine(folderPath, fileName);
 
         try
