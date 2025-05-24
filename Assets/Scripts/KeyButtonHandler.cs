@@ -5,25 +5,22 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class KeyButton : MonoBehaviour, IPointerClickHandler
+public class KeyButton : MonoBehaviour
 {
     private Color default_color;
     private Renderer cubeRenderer;
 
     private static bool capslock = false;
-    private bool isPressed = false;
+    private bool isPressed;
 
     // FIX: Ensure this is assigned automatically to avoid null reference
     private SceneManagerScript sceneManagerScript;
 
     void Start()
     {
-#if UNITY_EDITOR
-#elif UNITY_IOS || UNITY_ANDROID
+        isPressed = false;
         cubeRenderer = GetComponent<Renderer>();
-        GetComponent<Button>().onClick.AddListener(OnKeyPress);
         default_color = cubeRenderer.material.color;
-#endif
 
         // Minimal fix: assign sceneManagerScript
         sceneManagerScript = SceneManagerScript.Instance;
@@ -35,27 +32,13 @@ public class KeyButton : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-#if UNITY_IOS || UNITY_ANDROID
         isPressed = Input.GetMouseButton(0);
-#endif
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick()
     {
         OnKeyPress();
     }
-
-#if UNITY_IOS || UNITY_ANDROID
-    public void OnPointerClick()
-    {
-        if (!isPressed)
-        {
-            cubeRenderer.material.color = Color.yellow;
-            OnKeyPress();
-            cubeRenderer.material.color = default_color;
-        }
-    }
-#endif
 
     public void OnPointerEnter()
     {
@@ -67,88 +50,93 @@ public class KeyButton : MonoBehaviour, IPointerClickHandler
 
     void OnKeyPress()
     {
-        if (sceneManagerScript == null)
+        if (!isPressed)
         {
-            Debug.LogError("sceneManagerScript is not assigned.");
-            return;
-        }
+            isPressed = true;
+            Debug.Log("in key press method isPressed is: " + isPressed);
+            if (sceneManagerScript == null)
+            {
+                Debug.LogError("sceneManagerScript is not assigned.");
+                return;
+            }
 
-        string keyName = gameObject.name;
-        if (sceneManagerScript.TimerStatus())
-        {
-            sceneManagerScript.ContinueTracking(keyName);
-        }
-        else
-        {
-            sceneManagerScript.StartTracking(keyName);
-        }
+            string keyName = gameObject.name;
+            if (sceneManagerScript.TimerStatus())
+            {
+                sceneManagerScript.ContinueTracking(keyName);
+            }
+            else
+            {
+                sceneManagerScript.StartTracking(keyName);
+            }
 
-        switch (keyName)
-        {
-            case "Delete":
-                KeyboardTextDisplay.Instance?.Backspace();
-                break;
-            case "Space":
-                KeyboardTextDisplay.Instance?.AddCharacter(" ");
-                break;
-            case "Tab":
-                KeyboardTextDisplay.Instance?.AddCharacter("   ");
-                break;
-            case "Enter":
-                KeyboardTextDisplay.Instance?.AddCharacter("\n");
-                break;
-            case "ABC":
-                SceneManagerScript.Instance?.LoadABC();
-                break;
-            case "QWERTY":
-                SceneManagerScript.Instance?.LoadQWERTY();
-                break;
-            case "Caps":
-                capslock = !capslock;
-                UpdateKeyLabels();
-                break;
-            case "Input":
-                Debug.Log("Input switch work in progress");
-                break;
-            case "Save":
-                string textToSave = KeyboardTextDisplay.Instance?.getCurrentText();
-                if (string.IsNullOrEmpty(textToSave))
-                {
-                    Debug.Log("Text input is empty");
-                    return;
-                }
-
-                string fileName = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt";
-                string path = Path.Combine(Application.persistentDataPath, fileName);
-
-                try
-                {
-                    File.WriteAllText(path, textToSave);
-                    Debug.Log("File saved at: " + path);
-                    KeyboardTextDisplay.Instance?.ClearText();
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError("Error saving file: " + e.Message);
-                }
-                break;
-            default:
-                TMP_Text tmpText = GetComponentInChildren<TMP_Text>();
-                if (tmpText != null)
-                {
-                    string character = tmpText.text;
-                    if (character.Length == 1 && char.IsLetter(character[0]))
+            switch (keyName)
+            {
+                case "Delete":
+                    KeyboardTextDisplay.Instance?.Backspace();
+                    break;
+                case "Space":
+                    KeyboardTextDisplay.Instance?.AddCharacter(" ");
+                    break;
+                case "Tab":
+                    KeyboardTextDisplay.Instance?.AddCharacter("   ");
+                    break;
+                case "Enter":
+                    KeyboardTextDisplay.Instance?.AddCharacter("\n");
+                    break;
+                case "ABC":
+                    SceneManagerScript.Instance?.LoadABC();
+                    break;
+                case "QWERTY":
+                    SceneManagerScript.Instance?.LoadQWERTY();
+                    break;
+                case "Caps":
+                    capslock = !capslock;
+                    UpdateKeyLabels();
+                    break;
+                case "Input":
+                    Debug.Log("Input switch work in progress");
+                    break;
+                case "Save":
+                    string textToSave = KeyboardTextDisplay.Instance?.getCurrentText();
+                    if (string.IsNullOrEmpty(textToSave))
                     {
-                        character = capslock ? character.ToUpper() : character.ToLower();
-                        Debug.Log("Caps char: " + character);
+                        Debug.Log("Text input is empty");
+                        return;
                     }
-                    KeyboardTextDisplay.Instance?.AddCharacter(character);
-                }
-                else
-                {
-                    Debug.LogWarning("No text found on key.");
-                }
-                break;
+
+                    string fileName = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt";
+                    string path = Path.Combine(Application.persistentDataPath, fileName);
+
+                    try
+                    {
+                        File.WriteAllText(path, textToSave);
+                        Debug.Log("File saved at: " + path);
+                        KeyboardTextDisplay.Instance?.ClearText();
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError("Error saving file: " + e.Message);
+                    }
+                    break;
+                default:
+                    TMP_Text tmpText = GetComponentInChildren<TMP_Text>();
+                    if (tmpText != null)
+                    {
+                        string character = tmpText.text;
+                        if (character.Length == 1 && char.IsLetter(character[0]))
+                        {
+                            character = capslock ? character.ToUpper() : character.ToLower();
+                            Debug.Log("Caps char: " + character);
+                        }
+                        KeyboardTextDisplay.Instance?.AddCharacter(character);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No text found on key.");
+                    }
+                    break;
+            }
         }
     }
 

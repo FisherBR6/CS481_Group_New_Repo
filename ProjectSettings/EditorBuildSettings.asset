@@ -5,18 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.28.0/Hello Cardboard/Scenes/HelloCardboard.unity
-    guid: 03c48c5e809944fa4afcae9973709f26
-  - enabled: 0
-    path: Assets/Scenes/QWERTY_Scene.unity
-    guid: 6c542b384225f49aba80ef42819220cc
-  - enabled: 0
-    path: Assets/Scenes/SaveTestScene.unity
-    guid: 58cc0182a627f4c41bec3668a959d784
   - enabled: 1
     path: Assets/Scenes/Opening_Scene.unity
     guid: f074e469dd61e4d4295b38d786945d5b
@@ -26,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/New_Abc.unity
     guid: af1f6774f99349348b8abe5140a7c7e6
-  - enabled: 0
-    path: Assets/Scenes/ABC_Scene.unity
-    guid: 1c814d0548090414fb95a271b6b2af17
+  - enabled: 1
+    path: Assets/Scenes/SaveTestScene.unity
+    guid: 58cc0182a627f4c41bec3668a959d784
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 62cfe7d4a830afd48acae6e0bec0e4c9,
       type: 2}

@@ -323,9 +323,14 @@ public class CardboardReticlePointer : MonoBehaviour
     /// <returns>Whether or not a GameObject's layer is interactive.</returns>
     private bool IsInteractive(GameObject gameObject)
     {
+        if(gameObject == null)
+        {
+            return false;
+        }
         return (1 << gameObject?.layer & ReticleInteractionLayerMask) != 0;
     }
 
+    /*
     /// <summary>
     /// Clears the current target for the reticle, so reticle can safely exit when unloading a scene
     /// </summary>
@@ -338,5 +343,5 @@ public class CardboardReticlePointer : MonoBehaviour
 
         _gazedAtObject = null;
         ResetParams();
-    }
+    }*/
 }

@@ -50,20 +50,20 @@ public class SceneManagerScript : MonoBehaviour
     private IEnumerator SwitchScenes(string sceneUnload, string sceneLoad)
     {
         yield return new WaitForSeconds(0.1f);
-
+        /*
         if (reticlePointer != null)
         {
             reticlePointer.ClearCurrentTarget();
             reticlePointer.enabled = false;
-        }
+        }*/
 
         yield return SceneManager.UnloadSceneAsync(sceneUnload);
 
-        yield return null;
+        //yield return null;
 
         yield return SceneManager.LoadSceneAsync(sceneLoad, LoadSceneMode.Additive);
 
-        yield return null;
+        //yield return null;
 
         if (reticlePointer != null)
         {
