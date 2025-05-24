@@ -40,3 +40,6 @@ Assets/TextMesh Pro/Examples/
 
 # Ignore version specific files
 UserSettings/Layouts/
+
+# Ignore performance files
+TimeIntervalTracker*.csv
