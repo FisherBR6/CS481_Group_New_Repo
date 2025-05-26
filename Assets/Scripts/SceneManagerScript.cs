@@ -50,20 +50,20 @@ public class SceneManagerScript : MonoBehaviour
     private IEnumerator SwitchScenes(string sceneUnload, string sceneLoad)
     {
         yield return new WaitForSeconds(0.1f);
-        /*
+
         if (reticlePointer != null)
         {
             reticlePointer.ClearCurrentTarget();
             reticlePointer.enabled = false;
-        }*/
+        }
 
         yield return SceneManager.UnloadSceneAsync(sceneUnload);
 
-        //yield return null;
+        yield return null;
 
         yield return SceneManager.LoadSceneAsync(sceneLoad, LoadSceneMode.Additive);
 
-        //yield return null;
+        yield return null;
 
         if (reticlePointer != null)
         {
@@ -115,7 +115,13 @@ public class SceneManagerScript : MonoBehaviour
         stopwatch.Reset(); // Reset the stopwatch
         stopwatch.Start(); // Start again for the next interval
     }
-    
+
+    private string GetSavePath(string fileName)
+    {
+        return Path.Combine(Application.persistentDataPath, fileName);
+    }
+
+
     public void WriteToCSV(string currentButton, string interval)
     {
         if (string.IsNullOrEmpty(fileName))
@@ -125,7 +131,7 @@ public class SceneManagerScript : MonoBehaviour
         }
 
         // ✅ Go up two levels from Assets/ to get out of the Unity project folder
-        string folderPath = Path.Combine(Application.dataPath, "../Time_Interval_Performance_Files");
+        string folderPath = Path.Combine(Application.persistentDataPath, "../Time_Interval_Performance_Files");
         string fullPath = Path.Combine(folderPath, fileName);
 
         try
@@ -144,5 +150,7 @@ public class SceneManagerScript : MonoBehaviour
             Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
         }
     }
+    
+    
 
 }
