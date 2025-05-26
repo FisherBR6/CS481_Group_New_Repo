@@ -200,7 +200,8 @@ public class SceneManagerScript : MonoBehaviour
             Debug.Log("Running on Android. The .txt and .csv files will be saved to your downloads folder.");
             CopyCSVToDownloads();
         #elif UNITY_IOS
-            Debug.Log("Running on iOS.");
+            Debug.Log("Running on iOS. A NativeShare sheet has been opened.");
+            ShareCSV();
         #else
             Debug.Log("Running on another platform");
         #endif
