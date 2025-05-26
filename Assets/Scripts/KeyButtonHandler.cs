@@ -112,7 +112,7 @@ public class KeyButton : MonoBehaviour
                     {
                         Directory.CreateDirectory(folderPath);
                         File.WriteAllText(fullPath, textToSave);
-                        Debug.Log("File saved at: " + path);
+                        Debug.Log("File saved at: " + fullPath);
                         KeyboardTextDisplay.Instance?.ClearText();
                     }
                     catch (Exception e)
