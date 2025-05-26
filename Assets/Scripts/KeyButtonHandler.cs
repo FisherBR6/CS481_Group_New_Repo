@@ -97,7 +97,7 @@ public class KeyButton : MonoBehaviour
         Debug.Log("Opened native share sheet for file: " + fullPath);
     }
 
-    public string WriteToTXT(string textToSave)
+    public void WriteToTXT(string textToSave)
     {
         if (string.IsNullOrEmpty(fileName))
         {
@@ -178,19 +178,20 @@ public class KeyButton : MonoBehaviour
                         return;
                     }
 
-                    WriteToTXT();
+                    WriteToTXT(textToSave);
 
                     #if UNITY_ANDROID
                         Debug.Log("Running on Android. The .txt and .csv files will be saved to your downloads folder.");
                         CopyTXTToDownloads();
                     #elif UNITY_IOS
                         Debug.Log("Running on iOS. A NativeShare sheet has been opened.");
-                        ShareCSV();
+                        ShareTXT();
                     #else
                     Debug.Log("Running on another platform");
                     #endif
                     string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
                     string fullPath = Path.Combine(folderPath, fileName);
+                    break;
 
                     
                 default:
