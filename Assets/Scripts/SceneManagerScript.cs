@@ -53,7 +53,7 @@ public class SceneManagerScript : MonoBehaviour
 
         if (reticlePointer != null)
         {
-            reticlePointer.ClearCurrentTarget();
+            //reticlePointer.ClearCurrentTarget();
             reticlePointer.enabled = false;
         }
 
@@ -144,4 +144,67 @@ public class SceneManagerScript : MonoBehaviour
             Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
         }
     }
+
+    public void CopyCSVToDownloads()
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            Debug.LogError("File name is not set. Cannot copy CSV.");
+            return;
+        }
+
+        string sourcePath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files", fileName);
+        string destinationPath = Path.Combine("/storage/emulated/0/Download", fileName);
+
+        try
+        {
+            if (!File.Exists(sourcePath))
+            {
+                Debug.LogError("Source file does not exist: " + sourcePath);
+                return;
+            }
+
+            File.Copy(sourcePath, destinationPath, true); // Overwrite = true
+            Debug.Log($"Successfully copied to: {destinationPath}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error copying file to Downloads: {e.Message}");
+        }
+    }
+
+    public void ShareCSV()
+    {
+        string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
+        string fullPath = Path.Combine(folderPath, fileName);
+
+        if (!File.Exists(fullPath))
+        {
+            Debug.LogError("File does not exist: " + fullPath);
+            return;
+        }
+
+        new NativeShare()
+            .AddFile(fullPath)
+            .SetSubject("VR Session Data")
+            .SetText("Here is the CSV file from your VR session.")
+            .Share();
+
+        Debug.Log("Opened native share sheet for file: " + fullPath);
+    }
+
+    
+    void OnApplicationQuit()
+    {
+        #if UNITY_ANDROID
+            Debug.Log("Running on Android. The .txt and .csv files will be saved to your downloads folder.");
+            CopyCSVToDownloads();
+        #elif UNITY_IOS
+            Debug.Log("Running on iOS.");
+        #else
+            Debug.Log("Running on another platform");
+        #endif
+    }
+
+
 }
