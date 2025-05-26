@@ -116,11 +116,6 @@ public class SceneManagerScript : MonoBehaviour
         stopwatch.Start(); // Start again for the next interval
     }
 
-    private string GetSavePath(string fileName)
-    {
-        return Path.Combine(Application.persistentDataPath, fileName);
-    }
-
 
     public void WriteToCSV(string currentButton, string interval)
     {
@@ -130,8 +125,7 @@ public class SceneManagerScript : MonoBehaviour
             Debug.LogWarning("fileName was empty. Auto-generated a new one.");
         }
 
-        // ✅ Go up two levels from Assets/ to get out of the Unity project folder
-        string folderPath = Path.Combine(Application.persistentDataPath, "../Time_Interval_Performance_Files");
+        string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
         string fullPath = Path.Combine(folderPath, fileName);
 
         try
@@ -150,7 +144,4 @@ public class SceneManagerScript : MonoBehaviour
             Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
         }
     }
-    
-    
-
 }

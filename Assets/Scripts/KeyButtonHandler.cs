@@ -104,13 +104,14 @@ public class KeyButton : MonoBehaviour
                         Debug.Log("Text input is empty");
                         return;
                     }
-
-                    string fileName = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt";
-                    string path = Path.Combine(Application.persistentDataPath, fileName);
+                    string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
+                    string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss.fff") + ".txt";
+                    string fullPath = Path.Combine(folderPath, fileName);
 
                     try
                     {
-                        File.WriteAllText(path, textToSave);
+                        Directory.CreateDirectory(folderPath);
+                        File.WriteAllText(fullPath, textToSave);
                         Debug.Log("File saved at: " + path);
                         KeyboardTextDisplay.Instance?.ClearText();
                     }
