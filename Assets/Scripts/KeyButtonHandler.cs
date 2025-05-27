@@ -21,6 +21,7 @@ public class KeyButton : MonoBehaviour
    
     // FIX: Ensure this is assigned automatically to avoid null reference
     private SceneManagerScript sceneManagerScript;
+    private InputManager inputManager;
 
     private void Awake()
     {
@@ -207,9 +208,11 @@ public class KeyButton : MonoBehaviour
                         KeyboardTextDisplay.Instance?.AddCharacter("\n");
                         break;
                     case "ABC":
+                        capslock = !capslock;
                         SceneManagerScript.Instance?.LoadABC();
                         break;
                     case "QWERTY":
+                        capslock = !capslock;
                         SceneManagerScript.Instance?.LoadQWERTY();
                         break;
                     case "Caps":

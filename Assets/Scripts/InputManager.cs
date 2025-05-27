@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
 
     public Camera mainCamera;
-    public float dwellTime = 2f; // seconds to trigger a dwell
+    public float dwellTime = .3f; // seconds to trigger a dwell
     public bool useDwell = false;
 
     //tracks currently gazed at objects 
