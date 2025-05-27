@@ -12,11 +12,9 @@ public class KeyButton : MonoBehaviour
 
     private static bool capslock = false;
     private bool isPressed;
-<<<<<<< HEAD
-    
-=======
+
     private string fileName;
->>>>>>> a6463b24c247669508950416368a42ad30763baa
+
 
     //sound
     [SerializeField] private AudioClip clickSound; 
@@ -83,7 +81,7 @@ public class KeyButton : MonoBehaviour
     {
     }
 
-<<<<<<< HEAD
+
     public void SetHoverColor (Color color)
     {
         keyRenderer.material.color = color;
@@ -92,7 +90,8 @@ public class KeyButton : MonoBehaviour
     public void ResetColor()
     {
         keyRenderer.material.color = default_color;
-=======
+    }
+
     public void CopyTXTToDownloads()
     {
         if (string.IsNullOrEmpty(fileName))
@@ -163,109 +162,110 @@ public class KeyButton : MonoBehaviour
         {
             Debug.LogError($"Failed to write to TXT at {fullPath}: {ex.Message}");
         }
->>>>>>> a6463b24c247669508950416368a42ad30763baa
     }
 
-    void OnKeyPress()
-    {
-        //play click sound
-        PlayClickSound();
-        //change color 
-        keyRenderer.material.color = Color.red;
 
-        if (!isPressed)
+        void OnKeyPress()
         {
-            isPressed = true;
-            Debug.Log("in key press method isPressed is: " + isPressed);
-            if (sceneManagerScript == null)
-            {
-                Debug.LogError("sceneManagerScript is not assigned.");
-                return;
-            }
+            //play click sound
+            PlayClickSound();
+            //change color 
+            keyRenderer.material.color = Color.red;
 
-            string keyName = gameObject.name;
-            if (sceneManagerScript.TimerStatus())
+            if (!isPressed)
             {
-                sceneManagerScript.ContinueTracking(keyName);
-            }
-            else
-            {
-                sceneManagerScript.StartTracking(keyName);
-            }
+                isPressed = true;
+                Debug.Log("in key press method isPressed is: " + isPressed);
+                if (sceneManagerScript == null)
+                {
+                    Debug.LogError("sceneManagerScript is not assigned.");
+                    return;
+                }
 
-            switch (keyName)
-            {
-                case "Delete":
-                    KeyboardTextDisplay.Instance?.Backspace();
-                    break;
-                case "Space":
-                    KeyboardTextDisplay.Instance?.AddCharacter(" ");
-                    break;
-                case "Tab":
-                    KeyboardTextDisplay.Instance?.AddCharacter("   ");
-                    break;
-                case "Enter":
-                    KeyboardTextDisplay.Instance?.AddCharacter("\n");
-                    break;
-                case "ABC":
-                    SceneManagerScript.Instance?.LoadABC();
-                    break;
-                case "QWERTY":
-                    SceneManagerScript.Instance?.LoadQWERTY();
-                    break;
-                case "Caps":
-                    capslock = !capslock;
-                    UpdateKeyLabels();
-                    break;
-                case "Input":
-                    //toggle input (added)
-                    FindObjectOfType<InputManager>().ToggleInputMode();
-                    Debug.Log("Input key was clicked");
-                    break;
-                case "Save":
-                    string textToSave = KeyboardTextDisplay.Instance?.getCurrentText();
-                    if (string.IsNullOrEmpty(textToSave))
-                    {
-                        Debug.Log("Text input is empty");
-                        return;
-                    }
+                string keyName = gameObject.name;
+                if (sceneManagerScript.TimerStatus())
+                {
+                    sceneManagerScript.ContinueTracking(keyName);
+                }
+                else
+                {
+                    sceneManagerScript.StartTracking(keyName);
+                }
 
-                    WriteToTXT(textToSave);
+                switch (keyName)
+                {
+                    case "Delete":
+                        KeyboardTextDisplay.Instance?.Backspace();
+                        break;
+                    case "Space":
+                        KeyboardTextDisplay.Instance?.AddCharacter(" ");
+                        break;
+                    case "Tab":
+                        KeyboardTextDisplay.Instance?.AddCharacter("   ");
+                        break;
+                    case "Enter":
+                        KeyboardTextDisplay.Instance?.AddCharacter("\n");
+                        break;
+                    case "ABC":
+                        SceneManagerScript.Instance?.LoadABC();
+                        break;
+                    case "QWERTY":
+                        SceneManagerScript.Instance?.LoadQWERTY();
+                        break;
+                    case "Caps":
+                        capslock = !capslock;
+                        UpdateKeyLabels();
+                        break;
+                    case "Input":
+                        //toggle input (added)
+                        FindObjectOfType<InputManager>().ToggleInputMode();
+                        Debug.Log("Input key was clicked");
+                        break;
+                    case "Save":
+                        string textToSave = KeyboardTextDisplay.Instance?.getCurrentText();
+                        if (string.IsNullOrEmpty(textToSave))
+                        {
+                            Debug.Log("Text input is empty");
+                            return;
+                        }
 
-                    #if UNITY_ANDROID
+                        WriteToTXT(textToSave);
+
+#if UNITY_ANDROID
                         Debug.Log("Running on Android. The .txt and .csv files will be saved to your downloads folder.");
                         CopyTXTToDownloads();
-                    #elif UNITY_IOS
+#elif UNITY_IOS
                         Debug.Log("Running on iOS. A NativeShare sheet has been opened.");
                         ShareTXT();
-                    #else
+#else
                     Debug.Log("Running on another platform");
-                    #endif
-                    string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
-                    string fullPath = Path.Combine(folderPath, fileName);
-                    break;
+#endif
+                        string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
+                        string fullPath = Path.Combine(folderPath, fileName);
+                        break;
 
-                    
-                default:
-                    TMP_Text tmpText = GetComponentInChildren<TMP_Text>();
-                    if (tmpText != null)
-                    {
-                        string character = tmpText.text;
-                        if (character.Length == 1 && char.IsLetter(character[0]))
+
+                    default:
+                        TMP_Text tmpText = GetComponentInChildren<TMP_Text>();
+                        if (tmpText != null)
                         {
-                            character = capslock ? character.ToUpper() : character.ToLower();
-                            Debug.Log("Caps char: " + character);
+                            string character = tmpText.text;
+                            if (character.Length == 1 && char.IsLetter(character[0]))
+                            {
+                                character = capslock ? character.ToUpper() : character.ToLower();
+                                Debug.Log("Caps char: " + character);
+                            }
+                            KeyboardTextDisplay.Instance?.AddCharacter(character);
                         }
-                        KeyboardTextDisplay.Instance?.AddCharacter(character);
-                    }
-                    else
-                    {
-                        Debug.LogWarning("No text found on key.");
-                    }
-                    break;
+                        else
+                        {
+                            Debug.LogWarning("No text found on key.");
+                        }
+                        break;
+                }
             }
         }
-    }
+    
 
     private void UpdateKeyLabels()
     {

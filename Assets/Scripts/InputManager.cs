@@ -1,18 +1,36 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
+
     public Camera mainCamera;
     public float dwellTime = 2f; // seconds to trigger a dwell
     public bool useDwell = false;
 
+    //tracks currently gazed at objects 
     private GameObject currentTarget = null;
     private float gazeTimer = 0f;
+
+
+    //key colors 
+    private Color hoverColor = Color.yellow;
+
+    //progress bar 
+    [SerializeField] private Image dwellProgressImage;
+
+    private SceneManagerScript sceneManagerScript;
 
     public void Awake()
     {
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void Start()
+    {
+
     }
     private void Update()
     {
@@ -26,18 +44,43 @@ public class InputManager : MonoBehaviour
         else
         {
             var reticlePointer = mainCamera.GetComponentInChildren<CardboardReticlePointer>();
-            if (reticlePointer == null) return;
+            if (reticlePointer == null) return; //exit if no reticle is found
+
             ray = new Ray(reticlePointer.transform.position, reticlePointer.transform.forward);
         }
-
+        //handle gaze unteractions 
         HandleRaycast(ray);
 
+        //if not in dwell mode allow taps to trigger keys 
         if (!useDwell && Google.XR.Cardboard.Api.IsTriggerPressed && currentTarget != null)
         {
+            Debug.Log("Tap deteected! Triggering key: " + currentTarget.name);
             TriggerKey(currentTarget);
+        }
+       
+    }
+
+    //highlights key when hovered 
+    void OnHover(GameObject key)
+    {
+        var renderer = key.GetComponent<KeyButton>();
+        if (renderer != null)
+        {
+            renderer.SetHoverColor(hoverColor);
         }
     }
 
+    //resets color when gaze exits 
+    void OnExit(GameObject key)
+    {
+        var renderer = key.GetComponent<KeyButton>();
+        if (renderer != null)
+        {
+            renderer.ResetColor();
+        }
+    }
+
+    //handles gaze detection and dwell logic 
     void HandleRaycast(Ray ray)
     {
         RaycastHit hit;
@@ -47,36 +90,60 @@ public class InputManager : MonoBehaviour
 
             if (hitObj.CompareTag("KeyButton"))
             {
+                //if the target has changed, update hover/exit effects
                 if (hitObj != currentTarget)
                 {
-                    currentTarget = hitObj;
-                    gazeTimer = 0f;
+                    if (currentTarget != null)
+                    {
+                        OnExit(currentTarget); //exits previous key 
+                    }
+                    currentTarget = hitObj;//set new object as target 
+                    gazeTimer = 0f; 
+                    OnHover(currentTarget); //highlight new key
                 }
                 else if (useDwell)
                 {
+                    //update dwell progress bar 
                     gazeTimer += Time.deltaTime;
+                    float progress = Mathf.Clamp01(gazeTimer / dwellTime);
+
+                    if (dwellProgressImage != null)
+                    {
+                        dwellProgressImage.fillAmount = progress;
+                    }
+
                     if (gazeTimer >= dwellTime)
                     {
+                        //trigger key when time is reached 
+                        Debug.Log("Dwell time reached Triggering key: " + currentTarget.name);
                         TriggerKey(currentTarget);
-                        gazeTimer = 0f; // prevent repeat triggering
+                        gazeTimer = 0f; 
+
+                        if (dwellProgressImage != null)
+                            dwellProgressImage.fillAmount = 0f;
                     }
                 }
             }
-            else
-            {
-                ResetGaze();
+            else { 
+            
+               ResetGaze();
             }
-        }
-        else
-        {
-            ResetGaze();
         }
     }
 
     void ResetGaze()
     {
-        currentTarget = null;
+        if (currentTarget != null)
+        {
+            OnExit(currentTarget);
+            currentTarget = null;
+        }
         gazeTimer = 0f;
+
+        if (dwellProgressImage != null)
+        {
+            dwellProgressImage.fillAmount = 0f;
+        }
     }
 
     void TriggerKey(GameObject keyObj)
@@ -85,11 +152,10 @@ public class InputManager : MonoBehaviour
         keyObj.SendMessage("OnKeyPress", SendMessageOptions.DontRequireReceiver);
     }
 
-    
+
     public void ToggleInputMode()
     {
         useDwell = !useDwell;
         Debug.Log("Input mode changed: " + (useDwell ? "Dwell" : "Click"));
     }
 }
-
