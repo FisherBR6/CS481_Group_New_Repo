@@ -12,7 +12,11 @@ public class KeyButton : MonoBehaviour
 
     private static bool capslock = false;
     private bool isPressed;
+<<<<<<< HEAD
     
+=======
+    private string fileName;
+>>>>>>> a6463b24c247669508950416368a42ad30763baa
 
     //sound
     [SerializeField] private AudioClip clickSound; 
@@ -79,6 +83,7 @@ public class KeyButton : MonoBehaviour
     {
     }
 
+<<<<<<< HEAD
     public void SetHoverColor (Color color)
     {
         keyRenderer.material.color = color;
@@ -87,6 +92,78 @@ public class KeyButton : MonoBehaviour
     public void ResetColor()
     {
         keyRenderer.material.color = default_color;
+=======
+    public void CopyTXTToDownloads()
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            Debug.LogError("File name is not set. Cannot copy CSV.");
+            return;
+        }
+
+        string sourcePath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files", fileName);
+        string destinationPath = Path.Combine("/storage/emulated/0/Download", fileName);
+
+        try
+        {
+            if (!File.Exists(sourcePath))
+            {
+                Debug.LogError("Source file does not exist: " + sourcePath);
+                return;
+            }
+
+            File.Copy(sourcePath, destinationPath, true); // Overwrite = true
+            Debug.Log($"Successfully copied to: {destinationPath}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error copying file to Downloads: {e.Message}");
+        }
+    }
+
+    public void ShareTXT()
+    {
+        string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
+        string fullPath = Path.Combine(folderPath, fileName);
+
+        if (!File.Exists(fullPath))
+        {
+            Debug.LogError("File does not exist: " + fullPath);
+            return;
+        }
+
+        new NativeShare()
+            .AddFile(fullPath)
+            .SetSubject("VR Session Data")
+            .SetText("Here is the TXT file from your VR session.")
+            .Share();
+
+        Debug.Log("Opened native share sheet for file: " + fullPath);
+    }
+
+    public void WriteToTXT(string textToSave)
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            fileName = $"TimeIntervalTracker_{DateTime.Now:yyyyMMdd_HHmmss.fff}.txt";
+            Debug.LogWarning("fileName was empty. Auto-generated a new one.");
+        }
+
+        string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
+        string fullPath = Path.Combine(folderPath, fileName);
+
+        try
+        {
+            Directory.CreateDirectory(folderPath);
+            File.WriteAllText(fullPath, textToSave);
+            Debug.Log($"Logged data to: {Path.GetFullPath(fullPath)}");
+            KeyboardTextDisplay.Instance?.ClearText();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write to TXT at {fullPath}: {ex.Message}");
+        }
+>>>>>>> a6463b24c247669508950416368a42ad30763baa
     }
 
     void OnKeyPress()
@@ -153,20 +230,22 @@ public class KeyButton : MonoBehaviour
                         return;
                     }
 
-                    string fileName = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt";
-                    string path = Path.Combine(Application.persistentDataPath, fileName);
+                    WriteToTXT(textToSave);
 
-                    try
-                    {
-                        File.WriteAllText(path, textToSave);
-                        Debug.Log("File saved at: " + path);
-                        KeyboardTextDisplay.Instance?.ClearText();
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.LogError("Error saving file: " + e.Message);
-                    }
+                    #if UNITY_ANDROID
+                        Debug.Log("Running on Android. The .txt and .csv files will be saved to your downloads folder.");
+                        CopyTXTToDownloads();
+                    #elif UNITY_IOS
+                        Debug.Log("Running on iOS. A NativeShare sheet has been opened.");
+                        ShareTXT();
+                    #else
+                    Debug.Log("Running on another platform");
+                    #endif
+                    string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
+                    string fullPath = Path.Combine(folderPath, fileName);
                     break;
+
+                    
                 default:
                     TMP_Text tmpText = GetComponentInChildren<TMP_Text>();
                     if (tmpText != null)

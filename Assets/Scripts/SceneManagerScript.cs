@@ -50,20 +50,20 @@ public class SceneManagerScript : MonoBehaviour
     private IEnumerator SwitchScenes(string sceneUnload, string sceneLoad)
     {
         yield return new WaitForSeconds(0.1f);
-        /*
+
         if (reticlePointer != null)
         {
-            reticlePointer.ClearCurrentTarget();
+            //reticlePointer.ClearCurrentTarget();
             reticlePointer.enabled = false;
-        }*/
+        }
 
         yield return SceneManager.UnloadSceneAsync(sceneUnload);
 
-        //yield return null;
+        yield return null;
 
         yield return SceneManager.LoadSceneAsync(sceneLoad, LoadSceneMode.Additive);
 
-        //yield return null;
+        yield return null;
 
         if (reticlePointer != null)
         {
@@ -115,7 +115,8 @@ public class SceneManagerScript : MonoBehaviour
         stopwatch.Reset(); // Reset the stopwatch
         stopwatch.Start(); // Start again for the next interval
     }
-    
+
+
     public void WriteToCSV(string currentButton, string interval)
     {
         if (string.IsNullOrEmpty(fileName))
@@ -124,8 +125,7 @@ public class SceneManagerScript : MonoBehaviour
             Debug.LogWarning("fileName was empty. Auto-generated a new one.");
         }
 
-        // ✅ Go up two levels from Assets/ to get out of the Unity project folder
-        string folderPath = Path.Combine(Application.dataPath, "../Time_Interval_Performance_Files");
+        string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
         string fullPath = Path.Combine(folderPath, fileName);
 
         try
@@ -144,5 +144,68 @@ public class SceneManagerScript : MonoBehaviour
             Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
         }
     }
+
+    public void CopyCSVToDownloads()
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            Debug.LogError("File name is not set. Cannot copy CSV.");
+            return;
+        }
+
+        string sourcePath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files", fileName);
+        string destinationPath = Path.Combine("/storage/emulated/0/Download", fileName);
+
+        try
+        {
+            if (!File.Exists(sourcePath))
+            {
+                Debug.LogError("Source file does not exist: " + sourcePath);
+                return;
+            }
+
+            File.Copy(sourcePath, destinationPath, true); // Overwrite = true
+            Debug.Log($"Successfully copied to: {destinationPath}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error copying file to Downloads: {e.Message}");
+        }
+    }
+
+    public void ShareCSV()
+    {
+        string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
+        string fullPath = Path.Combine(folderPath, fileName);
+
+        if (!File.Exists(fullPath))
+        {
+            Debug.LogError("File does not exist: " + fullPath);
+            return;
+        }
+
+        new NativeShare()
+            .AddFile(fullPath)
+            .SetSubject("VR Session Data")
+            .SetText("Here is the CSV file from your VR session.")
+            .Share();
+
+        Debug.Log("Opened native share sheet for file: " + fullPath);
+    }
+
+    
+    void OnApplicationQuit()
+    {
+        #if UNITY_ANDROID
+            Debug.Log("Running on Android. The .txt and .csv files will be saved to your downloads folder.");
+            CopyCSVToDownloads();
+        #elif UNITY_IOS
+            Debug.Log("Running on iOS. A NativeShare sheet has been opened.");
+            ShareCSV();
+        #else
+            Debug.Log("Running on another platform");
+        #endif
+    }
+
 
 }
