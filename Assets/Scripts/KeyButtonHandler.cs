@@ -8,26 +8,57 @@ using UnityEngine.UI;
 public class KeyButton : MonoBehaviour
 {
     private Color default_color;
-    private Renderer cubeRenderer;
+    private Renderer keyRenderer;
 
     private static bool capslock = false;
     private bool isPressed;
+    
 
+    //sound
+    [SerializeField] private AudioClip clickSound; 
+   
     // FIX: Ensure this is assigned automatically to avoid null reference
     private SceneManagerScript sceneManagerScript;
+
+    private void Awake()
+    {
+        keyRenderer = GetComponent<Renderer>();
+        default_color = keyRenderer.material.color;
+    }
 
     void Start()
     {
         isPressed = false;
-        cubeRenderer = GetComponent<Renderer>();
-        default_color = cubeRenderer.material.color;
-
         // Minimal fix: assign sceneManagerScript
         sceneManagerScript = SceneManagerScript.Instance;
         if (sceneManagerScript == null)
         {
             Debug.LogError("SceneManagerScript.Instance is null — make sure it's initialized.");
         }
+
+        //audio
+
+        
+        
+
+    }
+
+    public void PlayClickSound()
+    {
+        if (clickSound != null && Camera.main != null)
+        {
+           AudioSource source = Camera.main.GetComponent<AudioSource>();
+
+            if (source != null)
+            {
+                source.PlayOneShot(clickSound);
+                Debug.Log("Playing clcik from camera");
+            }else
+            {
+                Debug.Log("Main camera has no audio source");  ;
+            }
+        }
+        Debug.Log("Playing click sound");
     }
 
     void Update()
@@ -48,8 +79,23 @@ public class KeyButton : MonoBehaviour
     {
     }
 
+    public void SetHoverColor (Color color)
+    {
+        keyRenderer.material.color = color;
+    }
+
+    public void ResetColor()
+    {
+        keyRenderer.material.color = default_color;
+    }
+
     void OnKeyPress()
     {
+        //play click sound
+        PlayClickSound();
+        //change color 
+        keyRenderer.material.color = Color.red;
+
         if (!isPressed)
         {
             isPressed = true;
@@ -95,7 +141,9 @@ public class KeyButton : MonoBehaviour
                     UpdateKeyLabels();
                     break;
                 case "Input":
-                    Debug.Log("Input switch work in progress");
+                    //toggle input (added)
+                    FindObjectOfType<InputManager>().ToggleInputMode();
+                    Debug.Log("Input key was clicked");
                     break;
                 case "Save":
                     string textToSave = KeyboardTextDisplay.Instance?.getCurrentText();
