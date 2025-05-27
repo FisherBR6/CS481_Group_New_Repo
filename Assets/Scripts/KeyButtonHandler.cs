@@ -4,6 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using Stopwatch = System.Diagnostics.Stopwatch;
+using System.Globalization;
 
 public class KeyButton : MonoBehaviour
 {
@@ -14,6 +19,7 @@ public class KeyButton : MonoBehaviour
     private bool isPressed;
 
     private string fileName;
+    
 
 
     //sound
@@ -165,6 +171,59 @@ public class KeyButton : MonoBehaviour
         }
     }
 
+    public void WriteToCSV(List<List<string>> csvData)
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            fileName = $"TimeIntervalTracker_{DateTime.Now:yyyyMMdd_HHmmss.fff}.csv";
+            Debug.LogWarning("fileName was empty. Auto-generated a new one.");
+        }
+
+        string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
+        string fullPath = Path.Combine(folderPath, fileName);
+
+        try
+        {
+            Directory.CreateDirectory(folderPath);
+
+            using (var writer = new StreamWriter(fullPath, true)) // Append mode
+            {
+                foreach (var row in csvData)
+                {
+                    writer.WriteLine($"{row[0]},{row[1]},{row[2]}");
+                }
+            }
+
+            Debug.Log($"Logged data to: {Path.GetFullPath(fullPath)}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
+        }
+    }
+
+
+    public void ShareTXTandCSV()
+    {
+        List<List<string>> csvData = sceneManagerScript.GetCsvData();
+        string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
+        string fullPath = Path.Combine(folderPath, fileName);
+
+        if (!File.Exists(fullPath))
+        {
+            Debug.LogError("File does not exist: " + fullPath);
+            return;
+        }
+
+        new NativeShare()
+            .AddFile(fullPath)
+            .SetSubject("VR Session Data")
+            .SetText("Here is the TXT file from your VR session.")
+            .Share();
+
+        Debug.Log("Opened native share sheet for file: " + fullPath);
+    }
+
 
         void OnKeyPress()
         {
@@ -233,18 +292,20 @@ public class KeyButton : MonoBehaviour
                         }
 
                         WriteToTXT(textToSave);
+                        WriteToCSV(sceneManagerScript.GetCsvData());
 
-#if UNITY_ANDROID
-                        Debug.Log("Running on Android. The .txt and .csv files will be saved to your downloads folder.");
-                        CopyTXTToDownloads();
-#elif UNITY_IOS
+                        #if UNITY_ANDROID
+                            Debug.Log("Running on Android. The .txt and .csv files will be saved to your downloads folder.");
+                            CopyTXTToDownloads();
+                        #elif UNITY_IOS
                         Debug.Log("Running on iOS. A NativeShare sheet has been opened.");
-                        ShareTXT();
-#else
-                    Debug.Log("Running on another platform");
-#endif
+                            ShareTXTandCSV();
+                        #else
+                            Debug.Log("Running on another platform");
+                        #endif
                         string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
                         string fullPath = Path.Combine(folderPath, fileName);
+                        sceneManagerScript.StopTracking();
                         break;
 
 

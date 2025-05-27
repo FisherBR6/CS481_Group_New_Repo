@@ -20,6 +20,8 @@ public class SceneManagerScript : MonoBehaviour
     string prevButton;
     Stopwatch stopwatch = new Stopwatch();
 
+    List<List<string>> csvData = new List<List<string>>();
+
 
     void Awake()
     {
@@ -107,7 +109,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         stopwatch.Stop(); // Stop the stopwatch
         UnityEngine.Debug.Log($"{prevButton} -> {pressedButton} in {stopwatch.ElapsedMilliseconds / 1000f:0.000} seconds");
-        WriteToCSV(pressedButton, $"{stopwatch.ElapsedMilliseconds / 1000f:0.000}");
+        WriteCsvData(pressedButton, $"{stopwatch.ElapsedMilliseconds / 1000f:0.000}");
         prevButton = pressedButton;
         //write buttons and time interval to the existing csv
 
@@ -115,8 +117,16 @@ public class SceneManagerScript : MonoBehaviour
         stopwatch.Reset(); // Reset the stopwatch
         stopwatch.Start(); // Start again for the next interval
     }
+    
+    public void StopTracking()
+    {
+        stopwatch.Reset();
+
+        trackFlag = false; // Set the flag to true after starting
+    }
 
 
+    /**
     public void WriteToCSV(string currentButton, string interval)
     {
         if (string.IsNullOrEmpty(fileName))
@@ -143,6 +153,27 @@ public class SceneManagerScript : MonoBehaviour
         {
             Debug.LogError($"Failed to write to CSV at {fullPath}: {ex.Message}");
         }
+    }
+    **/
+
+
+    public void WriteCsvData(string currentButton, string interval)
+    {
+        try
+        {
+            List<string> row = new List<string> { prevButton, currentButton, interval };
+            csvData.Add(row);
+            prevButton = currentButton; // Optional: update for next call
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write to CSV data: {ex.Message}");
+        }
+    }
+
+    public List<List<string>> GetCsvData()
+    {
+        return csvData;
     }
 
     public void CopyCSVToDownloads()
@@ -173,6 +204,8 @@ public class SceneManagerScript : MonoBehaviour
         }
     }
 
+
+    /**
     public void ShareCSV()
     {
         string folderPath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files");
@@ -192,20 +225,22 @@ public class SceneManagerScript : MonoBehaviour
 
         Debug.Log("Opened native share sheet for file: " + fullPath);
     }
+    **/
 
-    
+    /**
     void OnApplicationQuit()
     {
         #if UNITY_ANDROID
             Debug.Log("Running on Android. The .txt and .csv files will be saved to your downloads folder.");
-            CopyCSVToDownloads();
+            //CopyCSVToDownloads();
         #elif UNITY_IOS
             Debug.Log("Running on iOS. A NativeShare sheet has been opened.");
-            ShareCSV();
+            //ShareCSV();
         #else
             Debug.Log("Running on another platform");
         #endif
     }
+    **/
 
 
 }
