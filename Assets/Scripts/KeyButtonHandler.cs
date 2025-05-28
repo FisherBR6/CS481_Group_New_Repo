@@ -208,11 +208,11 @@ public class KeyButton : MonoBehaviour
                         KeyboardTextDisplay.Instance?.AddCharacter("\n");
                         break;
                     case "ABC":
-                        capslock = !capslock;
+                        capslock = false;
                         SceneManagerScript.Instance?.LoadABC();
                         break;
                     case "QWERTY":
-                        capslock = !capslock;
+                        capslock = false;
                         SceneManagerScript.Instance?.LoadQWERTY();
                         break;
                     case "Caps":
