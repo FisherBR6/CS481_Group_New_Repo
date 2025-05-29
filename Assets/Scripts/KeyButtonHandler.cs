@@ -43,12 +43,6 @@ public class KeyButton : MonoBehaviour
         {
             Debug.LogError("SceneManagerScript.Instance is null — make sure it's initialized.");
         }
-
-        //audio
-
-        
-        
-
     }
 
     public void PlayClickSound()
@@ -76,7 +70,7 @@ public class KeyButton : MonoBehaviour
 
     public void OnPointerClick()
     {
-        OnKeyPress();
+        
     }
 
     public void OnPointerEnter()
@@ -96,6 +90,34 @@ public class KeyButton : MonoBehaviour
     public void ResetColor()
     {
         keyRenderer.material.color = default_color;
+    }
+
+    public void CopyTXTToDownloads()
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            Debug.LogError("File name is not set. Cannot copy CSV.");
+            return;
+        }
+
+        string sourcePath = Path.Combine(Application.persistentDataPath, "Time_Interval_Performance_Files", fileName);
+        string destinationPath = Path.Combine("/storage/emulated/0/Download", fileName);
+
+        try
+        {
+            if (!File.Exists(sourcePath))
+            {
+                Debug.LogError("Source file does not exist: " + sourcePath);
+                return;
+            }
+
+            File.Copy(sourcePath, destinationPath, true); // Overwrite = true
+            Debug.Log($"Successfully copied to: {destinationPath}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error copying file to Downloads: {e.Message}");
+        }
     }
 
     public void WriteToTXT(string textToSave)
