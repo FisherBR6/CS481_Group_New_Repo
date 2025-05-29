@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 682893787}
-  dwellTime: 2
+  dwellTime: 0.3
   useDwell: 0
   dwellProgressImage: {fileID: 1446830933}
 --- !u!4 &403567866
