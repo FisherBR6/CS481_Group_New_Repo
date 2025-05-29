@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/New_Abc.unity
     guid: af1f6774f99349348b8abe5140a7c7e6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SaveTestScene.unity
     guid: 58cc0182a627f4c41bec3668a959d784
   m_configObjects:

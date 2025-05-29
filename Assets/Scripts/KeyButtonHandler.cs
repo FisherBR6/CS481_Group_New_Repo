@@ -178,13 +178,13 @@ public class KeyButton : MonoBehaviour
 
         void OnKeyPress()
         {
-            //play click sound
-            PlayClickSound();
             //change color 
             keyRenderer.material.color = Color.red;
 
             if (!isPressed)
             {
+                //play click sound
+                PlayClickSound();
                 isPressed = true;
                 Debug.Log("in key press method isPressed is: " + isPressed);
                 if (sceneManagerScript == null)
