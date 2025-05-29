@@ -1,106 +1,34 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.IO;
-using System;
+using YASDM.MobileNativeShare;
 
 public class ShareFiles : MonoBehaviour
 {
-    [SerializeField] private Canvas vrCanvas;
-    [SerializeField] private InputField vrInputField;
-    [SerializeField] private Button vrSaveButton;
-    
-    [SerializeField] private GameObject sharePromptPanel;
-    [SerializeField] private Button shareYesButton;
-    [SerializeField] private Button shareNoButton;
-    
-    
-    private string lastSavedFilePath;
-    
-    void Start()
+    public void ShareFile(string filePath, string mimeType = "application/msword")
     {
-        // Setup the canvas to face the camera
-        vrCanvas.renderMode = RenderMode.WorldSpace;
-        vrCanvas.transform.position = new Vector3(0, 0, 2); // 2 meters in front of camera
-        vrCanvas.transform.rotation = Quaternion.LookRotation(vrCanvas.transform.position - Camera.main.transform.position);
-        vrCanvas.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f); // Scale appropriately for VR
-        
-        // Add listener to save button
-        vrSaveButton.onClick.AddListener(SaveTextToFile);
-        
-        // Add listeners to share prompt buttons
-        if (shareYesButton != null)
-            //shareYesButton.onClick.AddListener(ShareLastSavedFile);
-        
-        if (shareNoButton != null)
-            shareNoButton.onClick.AddListener(CloseSharePrompt);
-        
-        // Hide share prompt panel initially
-        if (sharePromptPanel != null)
-            sharePromptPanel.SetActive(false);
-    }
-    
-    public void SaveTextToFile()
-    {
-        if (vrInputField != null && !string.IsNullOrEmpty(vrInputField.text))
+        if (!File.Exists(filePath))
         {
-            // Generate filename with current date/time
-            string fileName = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt";
-            
-            // Define the path to save the file
-            string path = Path.Combine(Application.persistentDataPath, fileName);
-            
-            try
-            {
-                // Write the text to the file
-                File.WriteAllText(path, vrInputField.text);
-                Debug.Log("Text saved successfully to: " + path);
-                
-                // Store the path for sharing
-                lastSavedFilePath = path;
-                
-                // Show the share prompt
-                ShowSharePrompt();
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError("Error saving text to file: " + e.Message);
-            }
+            Debug.LogError("File not found: " + filePath);
+            return;
         }
-        else
-        {
-            Debug.LogWarning("Input field is empty or not assigned!");
-        }
+
+        new MobileNativeShare()
+            .AddFile(filePath, mimeType)
+            .SetSubject("VR Keyboard Data Export")
+            .SetText("Here's my exported keyboard data from VR!")
+            .SetCallback((result, shareTarget) => 
+                Debug.Log("Share result: " + result + ", app: " + shareTarget))
+            .Share();
     }
-    
-    private void ShowSharePrompt()
+    public void ShareWordDoc()
     {
-        if (sharePromptPanel != null)
-        {
-            sharePromptPanel.SetActive(true);
-            
-            // Position the prompt panel in front of the user's view
-            sharePromptPanel.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
-            sharePromptPanel.transform.rotation = Quaternion.LookRotation(
-                sharePromptPanel.transform.position - Camera.main.transform.position);
-        }
+        string path = Path.Combine(Application.persistentDataPath, "keyboard_data.doc");
+        ShareFile(path);
     }
-    
-    private void CloseSharePrompt()
+
+    public void ShareCSV()
     {
-        if (sharePromptPanel != null)
-            sharePromptPanel.SetActive(false);
+        string path = Path.Combine(Application.persistentDataPath, "keyboard_data.csv");
+        ShareFile(path, "text/csv");
     }
-    
-    // public void ShareLastSavedFile()
-    // {
-    //     if (!string.IsNullOrEmpty(lastSavedFilePath) && fileSharing != null)
-    //     {
-    //         fileSharing.ShareFile(lastSavedFilePath, "Text from VR App", "Here's the text I saved in VR!");
-    //         CloseSharePrompt();
-    //     }
-    //     else
-    //     {
-    //         Debug.LogWarning("No file to share or FileSharing component not assigned!");
-    //     }
-    // }
 }
