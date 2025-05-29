@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.IO;
-using YASDM.MobileNativeShare;
 
 public class ShareFiles : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class ShareFiles : MonoBehaviour
             return;
         }
 
-        new MobileNativeShare()
+        new NativeShare()
             .AddFile(filePath, mimeType)
             .SetSubject("VR Keyboard Data Export")
             .SetText("Here's my exported keyboard data from VR!")
