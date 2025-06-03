@@ -176,6 +176,11 @@ public class SceneManagerScript : MonoBehaviour
         return csvData;
     }
 
+    public void InitializeCSVList()
+    {
+        csvData = new List<List<string>>();
+    }
+
     public void CopyCSVToDownloads()
     {
         if (string.IsNullOrEmpty(fileName))

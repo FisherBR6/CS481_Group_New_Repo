@@ -195,6 +195,8 @@ public class KeyButton : MonoBehaviour
             .Share();
 
         Debug.Log("Opened native share sheet for file: " + fullPath);
+
+        sceneManagerScript.InitializeCSVList();
     }
 
 
