@@ -1,13 +1,16 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
 
     public Camera mainCamera;
-    public float dwellTime; 
+    public float dwellTime;
+    private float defaultDwellTime; 
     public bool useDwell = false;
 
     //tracks currently gazed at objects 
@@ -30,8 +33,7 @@ public class InputManager : MonoBehaviour
 
     public void Start()
     {
-        //set dwell time in start to override inspector value
-        dwellTime = .3f; 
+        defaultDwellTime = dwellTime; //preserve inspector value    
     }
     private void Update()
     {
@@ -104,16 +106,20 @@ public class InputManager : MonoBehaviour
                 }
                 else if (useDwell)
                 {
-                    //update dwell progress bar 
+
+                    //if the target is the input key use 1f otherwise use inspector value 
+                    float effectiveDwellTime = (currentTarget != null && currentTarget.name == "Input") ? 1f : defaultDwellTime;
+
                     gazeTimer += Time.deltaTime;
-                    float progress = Mathf.Clamp01(gazeTimer / dwellTime);
+                    float progress = Mathf.Clamp01(gazeTimer / effectiveDwellTime);
 
                     if (dwellProgressImage != null)
                     {
                         dwellProgressImage.fillAmount = progress;
                     }
 
-                    if (gazeTimer >= dwellTime)
+                    if (gazeTimer >= effectiveDwellTime)
+
                     {
                         //trigger key when time is reached 
                         Debug.Log("Dwell time reached Triggering key: " + currentTarget.name);
