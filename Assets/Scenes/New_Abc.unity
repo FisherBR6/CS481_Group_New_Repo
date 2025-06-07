@@ -506,7 +506,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8a5ba03a50a349c40a37bab1e2a0aeba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2633,10 +2633,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: .
       objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.044
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.404
+      objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_text
       value: .
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6635475564063550676, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
@@ -3751,7 +3771,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 96f7fcef36d40614f933c8391fbb100c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4205,10 +4225,30 @@ PrefabInstance:
       propertyPath: m_TagString
       value: KeyButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.029
+      objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_text
       value: Save
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6635475564063550676, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
@@ -4770,13 +4810,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -7862,7 +7902,7 @@ PrefabInstance:
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_text
-      value: delete
+      value: Delete
       objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
@@ -8297,7 +8337,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b9dcb4bb2ac8baf469273aad4d81a66f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10901,10 +10941,25 @@ PrefabInstance:
       propertyPath: m_TagString
       value: KeyButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_text
       value: Tab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 6635475564063550676, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
@@ -11024,12 +11079,27 @@ PrefabInstance:
       propertyPath: m_TagString
       value: KeyButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_text
       value: 'Input
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6635475564063550676, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
@@ -11880,10 +11950,25 @@ PrefabInstance:
       propertyPath: m_TagString
       value: KeyButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_text
       value: Enter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 6635475564063550676, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
@@ -12003,6 +12088,16 @@ PrefabInstance:
       propertyPath: m_text
       value: Caps
       objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 23
+      objectReference: {fileID: 0}
     - target: {fileID: 6635475564063550676, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -12106,10 +12201,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: ','
       objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.518
+      objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_text
       value: ','
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6635475564063550676, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
@@ -12547,12 +12662,12 @@ PrefabInstance:
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_fontSize
-      value: 17
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 17
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6635475564063550676, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
@@ -12709,7 +12824,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 96f7fcef36d40614f933c8391fbb100c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13647,6 +13762,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: KeyButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4453184037318520390, guid: 934668ecd65482546b35a7e2125bb13e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.003
+      objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_text
@@ -13657,12 +13777,12 @@ PrefabInstance:
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_fontSize
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6623475017681905418, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6635475564063550676, guid: 934668ecd65482546b35a7e2125bb13e,
         type: 3}
